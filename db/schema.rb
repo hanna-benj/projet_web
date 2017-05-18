@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 20170430144857) do
     t.float    "mark"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "exams_id"
+    t.index ["exams_id"], name: "index_marks_on_exams_id", using: :btree
   end
 
   create_table "studients", force: :cascade do |t|
@@ -43,8 +45,10 @@ ActiveRecord::Schema.define(version: 20170430144857) do
     t.string   "title"
     t.datetime "begin"
     t.datetime "end"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "teachers_id"
+    t.index ["teachers_id"], name: "index_subjects_on_teachers_id", using: :btree
   end
 
   create_table "teachers", force: :cascade do |t|
@@ -57,4 +61,6 @@ ActiveRecord::Schema.define(version: 20170430144857) do
   end
 
   add_foreign_key "exams", "subjects", column: "subjects_id"
+  add_foreign_key "marks", "exams", column: "exams_id"
+  add_foreign_key "subjects", "teachers", column: "teachers_id"
 end
