@@ -1,0 +1,20 @@
+<html>
+<head>
+<h1>Bonjour Administrateur</h1>
+</head>
+<body>
+<a href="/pages/home">HOME </a>
+
+<%@teacher_attente.each do |prof_attente| %>
+<p><%= prof_attente.surname %> <%= prof_attente.name %> <%= prof_attente.email %></p>
+<%= form_tag "/pages/admin", method: :post do %>
+  <input type="hidden" name="id" value="<%= prof_attente.id %>">
+  <input type="submit" value="Autoriser">
+<% end %>
+<%= form_tag "/pages/admin", method: :delete do %>
+  <input type="hidden" name="id" value="<%= prof_attente.id %>">
+  <input type="submit" value="Refuser">
+<% end %>
+<% end %>
+</body>
+</html>

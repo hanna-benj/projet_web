@@ -1,15 +1,16 @@
 <html>
 <head>
-  <h1>Connexion</h1>
+  <h1>Inscription</h1>
 </head>
 <body>
-<%= form_tag "/pages/home", method: :post do %>
+<%= form_tag "/pages/inscription", method: :post do %>
   <label>Nom d'utilisateur : <input type="text" name="nom"></label><br>
+  <label>Prénom : <input type="text" name="prenom"></label><br>
   <label>Addresse email : <input type="email" name="email"></label><br>
   <label>Mot de passe : <input type="password" name="password"></label><br>
-  <input type="submit" value="Connexion">
+  <input type="submit" value="S'inscrire">
 <% end %>
-<p>Pour s'inscrire cliquez <a href="inscription">ici</a>.</p>
 <%= flash[:info] %>
+<a href="/pages/home">HOME </a>
 </body>
 </html>
