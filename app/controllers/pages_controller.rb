@@ -29,10 +29,22 @@ class PagesController < ApplicationController
     @matiere = set_current_subject
   end
 
+  def note
+    @prof = set_current_teacher
+    @matiere = set_current_subject
+    @epreuve = set_current_exam
+    @mark = Mark.where(exam_id: @epreuve.id)
+  end
+
+  def eleve
+    @eleve = set_current_studient
+  end
+
   def connexion
     if (params[:nom] != '') && (params[:email] != '') && (params[:password] != '')
       @admin = Administrateur.where(nom: params[:nom], email: params[:email], password: params[:password]).first
       @prof = Teacher.where(surname: params[:nom], email: params[:email], password: params[:password], role: "accepte").first
+      @eleve = Studient.where(surname: params[:nom], email: params[:email], password: params[:password]).first
       if @admin
         redirect_to '/pages/admin'
       else
@@ -40,13 +52,15 @@ class PagesController < ApplicationController
           session[:id_teacher]=@prof.id
           redirect_to '/pages/prof'
         else
+          if @eleve
+            session[:id_studient]=@eleve.id
+            redirect_to '/pages/eleve'
+          end
           flash[:info] = "Vous n'êtes pas inscrit ou l'administrateur n'a pas accepté votre compte."
-          redirect_to '/pages/home'
         end
       end
     else
       flash[:info] = "incorrect"
-      redirect_to '/pages/home'
     end
   end
 
@@ -74,6 +88,12 @@ class PagesController < ApplicationController
   def set_current_teacher
     if session[:id_teacher]
       @current_teacher = Teacher.find(session[:id_teacher])
+    end
+  end
+
+  def set_current_studient
+    if session[:id_studient]
+      @current_studient = Studient.find(session[:id_studient])
     end
   end
 
@@ -107,10 +127,29 @@ class PagesController < ApplicationController
     end
   end
 
-  def note
+  def voirnote
     @epreuve = Exam.where(id: params[:id_epreuve]).first
     session[:id_exam]=@epreuve.id
-    redirect_to '/pages/'
+    redirect_to '/pages/note'
+  end
+
+  def set_current_exam
+    if session[:id_exam]
+      @current_exam = Exam.find(session[:id_exam])
+    end
+  end
+
+  def ajoutnote
+    if ((params[:nom] != '') && (params[:prenom] != '' && (params[:note] != ''))) then
+      @eleve = Studient.where(surname: params[:nom], name: params[:prenom]).first
+      if @eleve then
+        Mark.create(mark: params[:note], exam_id: params[:exam], studient_id: @eleve.id, teacher_id: params[:prof])
+      else
+        redirect_to '/pages/examprof'
+      end
+    else
+      redirect_to '/pages/examprof'
+    end
   end
 
 end

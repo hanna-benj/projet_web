@@ -8,3 +8,4 @@
 
 Administrateur.create(nom: 'admin', email: 'hanna.benjedidia@gmail.com', password: 'admin')
 Teacher.create(surname: 'd', name: 'd', password: 'd', email: 'd@d', role: 'accepte')
+Studient.create(surname: 'Nom', name: 'Prenom', password: '1', email: 'eleve@eleve')
