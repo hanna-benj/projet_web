@@ -38,6 +38,7 @@ class PagesController < ApplicationController
 
   def eleve
     @eleve = set_current_studient
+    @mark = Mark.where(studient_id: @eleve.id)
   end
 
   def connexion
@@ -66,9 +67,21 @@ class PagesController < ApplicationController
 
   def inscrire
     if (params[:nom] != '') && (params[:email] != '') && (params[:password] != '') && (params[:prenom] != '')
-      Teacher.create(surname: params[:nom], name: params[:prenom], email: params[:email], password: params[:password], role: "attente")
-      flash[:info] = "Votre demande a bien été prise en compte"
-      redirect_to '/pages/home'
+      @eleve = Studient.all
+      compteur = 0
+      @eleve.each do |mail|
+        if params[:email] == mail.email
+          compteur += 1
+        end
+      end
+      if compteur == 0
+        Teacher.create(surname: params[:nom], name: params[:prenom], email: params[:email], password: params[:password], role: "attente")
+        flash[:info] = "Votre demande a bien été prise en compte"
+        redirect_to '/pages/home'
+      else
+        flash[:info] = "Les étudients n'ont pas le droit de s'inscrire"
+        redirect_to '/pages/home'
+      end
     else
       flash[:info] = "incorrect"
       redirect_to '/pages/inscription'

@@ -3,6 +3,16 @@
     <h1>Bonjour <%= @eleve.name%>!</h1>
   </head>
   <body>
+  <table>
+  <tr><th>Matière</th> <th>Professeur</th> <th>Examens</th> <th>Date de l'examen</th> <th>note</th></tr>
+  <%@mark.each do |note| %>
+  <% @epreuve = Exam.where(id: note.exam_id).first %>
+  <% @mat = Subject.where(id: @epreuve.subject_id).first %>
+  <% @prof = Teacher.where(id: @mat.teacher_id).first %>
+  <tr><td><%= @mat.title %></td> <td>Professeur <%= @prof.surname %></td> <td> <%= @epreuve.title %></td> <td> <%= @epreuve.date.strftime("%d/%m/%Y") %></td> <td><%= note.mark%></td></tr>
+  <% end %>
+</table>
+<br />
     <br />
     <a href="/pages/home"> Deconnexion</a>
   </body>
