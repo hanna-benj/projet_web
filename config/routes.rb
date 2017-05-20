@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'pages/examprof' => 'pages#examprof'
   get 'pages/ajoutmatiere' => 'pages#ajoutmatiere'
   get 'pages/ajoutexam' => 'pages#ajoutexam'
+  get 'pages/note' => 'pages#note'
+  get 'pages/eleve' => 'pages#eleve'
 
   post 'pages/home' => 'pages#connexion'
   post 'pages/inscription' => 'pages#inscrire'
@@ -13,7 +15,8 @@ Rails.application.routes.draw do
   post 'pages/ajoutmatiere' => 'pages#ajouter'
   post 'pages/prof' => 'pages#examen'
   post 'pages/ajoutexam' => 'pages#ajouterexam'
-  post 'pages/examprof' => 'pages#note'
+  post 'pages/examprof' => 'pages#voirnote'
+  post 'pages/note' => 'pages#ajoutnote'
 
   delete 'pages/admin' => 'pages#refuser'
   root 'page#connexion'

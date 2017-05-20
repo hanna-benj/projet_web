@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <h1>Note de l'examen de <%= @epreuve.title%> par le professeur <%= @prof.surname%>:</h1>
+  </head>
+  <body>
+    <%= form_tag "/pages/note", method: :post do %>
+      <label>Nom élève : <input type="text" name="nom"></label><br>
+      <label>Prénom élève : <input type="text" name="prenom"></label><br>
+      <label>Note : <input type="float" name="note"></label><br>
+      <input type="hidden" name="prof" value="<%= @prof.id %>">
+      <input type="hidden" name="exam" value="<%= @epreuve.id %>">
+      <input type="submit" value="Ajouter">
+    <% end %>
+    <br/><br/>
+    <table>
+      <tr><th>Nom élève</th> <th>Prénom élève</th><th>note</th></tr>
+      <%@mark.each do |notes| %>
+      <% @eleve = Studient.where(id: notes.studient_id).first %>
+      <tr><td> <%= @eleve.surname %></td> <td> <%= @eleve.name %> </td><td> <%= notes.mark %> </td> </tr>
+      <% end %>
+    </table>
+    <br />
+    <a href="/pages/examprof">Liste des épreuve</a>
+  </body>
+</html>
