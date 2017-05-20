@@ -26,18 +26,22 @@ ActiveRecord::Schema.define(version: 20170518145003) do
   create_table "exams", force: :cascade do |t|
     t.string   "title"
     t.datetime "date"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "subjects_id"
-    t.index ["subjects_id"], name: "index_exams_on_subjects_id", using: :btree
+    t.integer  "subject_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subject_id"], name: "index_exams_on_subject_id", using: :btree
   end
 
   create_table "marks", force: :cascade do |t|
     t.float    "mark"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "exams_id"
-    t.index ["exams_id"], name: "index_marks_on_exams_id", using: :btree
+    t.integer  "exam_id"
+    t.integer  "studient_id"
+    t.integer  "teacher_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["exam_id"], name: "index_marks_on_exam_id", using: :btree
+    t.index ["studient_id"], name: "index_marks_on_studient_id", using: :btree
+    t.index ["teacher_id"], name: "index_marks_on_teacher_id", using: :btree
   end
 
   create_table "studients", force: :cascade do |t|
@@ -53,10 +57,10 @@ ActiveRecord::Schema.define(version: 20170518145003) do
     t.string   "title"
     t.datetime "begin"
     t.datetime "end"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "teachers_id"
-    t.index ["teachers_id"], name: "index_subjects_on_teachers_id", using: :btree
+    t.integer  "teacher_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["teacher_id"], name: "index_subjects_on_teacher_id", using: :btree
   end
 
   create_table "teachers", force: :cascade do |t|
@@ -69,7 +73,4 @@ ActiveRecord::Schema.define(version: 20170518145003) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "exams", "subjects", column: "subjects_id"
-  add_foreign_key "marks", "exams", column: "exams_id"
-  add_foreign_key "subjects", "teachers", column: "teachers_id"
 end

@@ -4,9 +4,9 @@ class CreateSubjects < ActiveRecord::Migration[5.0]
       t.string :title
       t.datetime :begin
       t.datetime :end
+      t.belongs_to :teacher, index: true
 
       t.timestamps
     end
-    add_reference :subjects, :teachers, foreign_key: true
   end
 end

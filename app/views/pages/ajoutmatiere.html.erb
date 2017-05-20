@@ -1,0 +1,16 @@
+<html>
+<head>
+  <h1>Ajouter une matière</h1>
+</head>
+<body>
+  <%= form_tag "/pages/ajoutmatiere", method: :post do %>
+    <label>Matière : <input type="text" name="matiere"></label><br>
+    <label>Date de début : <input type="date_select" name="debut"></label><br>
+    <label>Date de fin : <input type="date_select" name="fin"></label><br>
+    <input type="hidden" name="id" value="<%= @prof.id %>">
+    <input type="submit" value="Ajouter">
+  <% end %>
+  <br />
+  <a href="/pages/prof">Liste des matières</a>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <h1>Examen de <%= @matiere.title%> par le professeur <%= @prof.surname%>:</h1>
+  </head>
+  <body>
+    <table>
+    <tr><th>Épreuve</th> <th>Date l'épreuve</th></tr>
+    <%@epreuve.each do |ep| %>
+    <tr><td><%= ep.title %></td> <td> <%= ep.date.strftime("%d/%m/%Y") %></td>
+    <td>
+      <%= form_tag "/pages/examprof", method: "post" do %>
+        <input type="hidden" name="id_epreuve" value="<%= ep.id %>">
+        <input type="submit" value="Notes">
+      <% end %>
+    </td></tr>
+    <% end %>
+  </table>
+  <br />
+    <br />
+    <a href="/pages/ajoutexam">Ajouter une épreuve</a>
+    <br />
+    <a href="/pages/prof">Liste des matières</a>
+  </body>
+</html>

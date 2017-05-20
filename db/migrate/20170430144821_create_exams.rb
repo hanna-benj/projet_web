@@ -3,9 +3,9 @@ class CreateExams < ActiveRecord::Migration[5.0]
     create_table :exams do |t|
       t.string :title
       t.datetime :date
+      t.belongs_to :subject, index: true
 
       t.timestamps
     end
-    add_reference :exams, :subjects, foreign_key: true
   end
 end

@@ -1,0 +1,15 @@
+<html>
+<head>
+  <h1>Ajouter une épreuve</h1>
+</head>
+<body>
+  <%= form_tag "/pages/ajoutexam", method: :post do %>
+    <label>Nom de l'épreuve : <input type="text" name="epreuve"></label><br>
+    <label>Date de l'épreuve : <input type="date_select" name="date"></label><br>
+    <input type="hidden" name="matiere" value="<%= @matiere.id %>">
+    <input type="submit" value="Ajouter">
+  <% end %>
+  <br />
+  <a href="/pages/examprof">Liste des épreuves</a>
+</body>
+</html>

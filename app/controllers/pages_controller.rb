@@ -11,6 +11,22 @@ class PagesController < ApplicationController
 
   def prof
     @prof = set_current_teacher
+    @matiere = Subject.where(teacher_id: @prof.id)
+  end
+
+  def ajoutmatiere
+    @prof = set_current_teacher
+  end
+
+  def examprof
+    @prof = set_current_teacher
+    @matiere = set_current_subject
+    @epreuve = Exam.where(subject_id: @matiere.id)
+  end
+
+  def ajoutexam
+    @prof = set_current_teacher
+    @matiere = set_current_subject
   end
 
   def connexion
@@ -60,4 +76,39 @@ class PagesController < ApplicationController
       @current_teacher = Teacher.find(session[:id_teacher])
     end
   end
+
+  def ajouter
+    if (params[:matiere] != '') && (params[:debut] != '') && (params[:fin] != '')
+      Subject.create(title: params[:matiere], begin: params[:debut], end: params[:fin], teacher_id: params[:id])
+      redirect_to '/pages/prof'
+    else
+      redirect_to '/pages/prof'
+    end
+  end
+
+  def examen
+    @matiere = Subject.where(id: params[:id_mat]).first
+    session[:id_subject]=@matiere.id
+    redirect_to '/pages/examprof'
+  end
+
+  def set_current_subject
+    if session[:id_subject]
+      @current_subject = Subject.find(session[:id_subject])
+    end
+  end
+
+  def ajouterexam
+    if (params[:epreuve] != '') && (params[:date] != '')
+      Exam.create(title: params[:epreuve], date: params[:date], subject_id: params[:matiere])
+      redirect_to '/pages/examprof'
+    else
+      redirect_to '/pages/examprof'
+    end
+  end
+
+  def note
+    @epreuve = Exam.where(id: params[:id_epreuve]).first
+  end
+
 end

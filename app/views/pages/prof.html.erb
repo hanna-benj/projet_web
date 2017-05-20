@@ -3,7 +3,21 @@
   <h1>Bonjour <%= @prof.name%>!</h1>
 </head>
 <body>
-  <a href="/pages/home">Deconnexion</a>
-  <h4>Ajouter une matière</h4>
+  <a href="/pages/ajoutmatiere"> Ajouter une matière</a>
+  <br/><br/>
+  <table>
+    <tr><th>Matière</th> <th>Date de début</th>  <th>Date de fin</th> <th>Examens</th></tr>
+    <%@matiere.each do |mat| %>
+    <tr><td><%= mat.title %></td> <td> <%= mat.begin.strftime("%d/%m/%Y") %></td> <td> <%= mat.end.strftime("%d/%m/%Y") %></td>
+    <td>
+      <%= form_tag "/pages/prof", method: "post" do %>
+        <input type="hidden" name="id_mat" value="<%= mat.id %>">
+        <input type="submit" value="Examens">
+      <% end %>
+    </td></tr>
+    <% end %>
+  </table>
+  <br />
+  <a href="/pages/home"> Deconnexion</a>
 </body>
 </html>
