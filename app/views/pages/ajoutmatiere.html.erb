@@ -1,16 +1,48 @@
 <html>
 <head>
-  <h1>Ajouter une matière</h1>
+  <div class="row">
+    <div class="col-md-12 bg-primary">
+        <h1 class="text-center">Ajouter une matière</h1>
+    </div>
+  </div>
 </head>
 <body>
+  <div class="row">
+    <div class="col-md-12">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand">Menu</a>
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="/pages/home">Deconnexion<span class="sr-only"></span></a></li>
+              <li><a href="/pages/prof">Liste des matières</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="col-md-12 text-center">
   <%= form_tag "/pages/ajoutmatiere", method: :post do %>
-    <label>Matière : <input type="text" name="matiere"></label><br>
-    <label>Date de début : <input type="date_select" name="debut"></label><br>
-    <label>Date de fin : <input type="date_select" name="fin"></label><br>
+      <div class="form-group">
+    <label>Matière : <input type="text" class="form-control" name="matiere"></label>
+  </div>
+  <div class="form-group">
+    <label>Date de début : <input type="date_select" class="form-control" name="debut"></label>
+  </div>
+  <div class="form-group">
+    <label>Date de fin : <input type="date_select" class="form-control" name="fin"></label>
+  </div>
     <input type="hidden" name="id" value="<%= @prof.id %>">
-    <input type="submit" value="Ajouter">
+    <input type="submit" class="btn btn-success hover" value="Ajouter">
   <% end %>
+</div>
   <br />
-  <a href="/pages/prof">Liste des matières</a>
+</div>
 </body>
 </html>

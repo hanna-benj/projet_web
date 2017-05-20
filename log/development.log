@@ -7883,3 +7883,2150 @@ No template found for PagesController#note, rendering head :no_content
 Completed 204 No Content in 19ms (ActiveRecord: 0.4ms)
 
 
+  [1m[36mActiveRecord::SchemaMigration Load (45.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[35m (367.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "Projet_web_development"[0m
+  [1m[35m (225.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "Projet_web_test"[0m
+  [1m[35m (827.0ms)[0m  [1m[35mCREATE DATABASE "Projet_web_development" ENCODING = 'unicode'[0m
+  [1m[35m (731.0ms)[0m  [1m[35mCREATE DATABASE "Projet_web_test" ENCODING = 'unicode'[0m
+  [1m[35m (102.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (101.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_try_advisory_lock(502675948381212375);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateStudients (20170430144239)
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (121.3ms)[0m  [1m[35mCREATE TABLE "studients" ("id" serial primary key, "surname" character varying, "name" character varying, "password" character varying, "email" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170430144239"]]
+  [1m[35m (17.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTeachers (20170430144346)
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (103.6ms)[0m  [1m[35mCREATE TABLE "teachers" ("id" serial primary key, "surname" character varying, "name" character varying, "password" character varying, "email" character varying, "role" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170430144346"]]
+  [1m[35m (20.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateSubjects (20170430144723)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (81.7ms)[0m  [1m[35mCREATE TABLE "subjects" ("id" serial primary key, "title" character varying, "begin" timestamp, "end" timestamp, "teacher_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (43.1ms)[0m  [1m[35mCREATE  INDEX  "index_subjects_on_teacher_id" ON "subjects"  ("teacher_id")[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170430144723"]]
+  [1m[35m (20.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateExams (20170430144821)
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (88.4ms)[0m  [1m[35mCREATE TABLE "exams" ("id" serial primary key, "title" character varying, "date" timestamp, "subject_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (44.0ms)[0m  [1m[35mCREATE  INDEX  "index_exams_on_subject_id" ON "exams"  ("subject_id")[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170430144821"]]
+  [1m[35m (19.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateMarks (20170430144857)
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (62.3ms)[0m  [1m[35mCREATE TABLE "marks" ("id" serial primary key, "mark" float, "exam_id" integer, "studient_id" integer, "teacher_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (36.8ms)[0m  [1m[35mCREATE  INDEX  "index_marks_on_exam_id" ON "marks"  ("exam_id")[0m
+  [1m[35m (35.7ms)[0m  [1m[35mCREATE  INDEX  "index_marks_on_studient_id" ON "marks"  ("studient_id")[0m
+  [1m[35m (35.5ms)[0m  [1m[35mCREATE  INDEX  "index_marks_on_teacher_id" ON "marks"  ("teacher_id")[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170430144857"]]
+  [1m[35m (18.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateAdministrateurs (20170518145003)
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (98.6ms)[0m  [1m[35mCREATE TABLE "administrateurs" ("id" serial primary key, "nom" character varying, "email" character varying, "password" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170518145003"]]
+  [1m[35m (17.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.6ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2017-05-20 14:20:25 UTC], ["updated_at", 2017-05-20 14:20:25 UTC]]
+  [1m[35m (12.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_advisory_unlock(502675948381212375)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "administrateurs" ("nom", "email", "password", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["nom", "admin"], ["email", "hanna.benjedidia@gmail.com"], ["password", "admin"], ["created_at", 2017-05-20 14:20:25 UTC], ["updated_at", 2017-05-20 14:20:25 UTC]]
+  [1m[35m (10.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "teachers" ("surname", "name", "password", "email", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["surname", "d"], ["name", "d"], ["password", "d"], ["email", "d@d"], ["role", "accepte"], ["created_at", 2017-05-20 14:20:25 UTC], ["updated_at", 2017-05-20 14:20:25 UTC]]
+  [1m[35m (6.3ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 16:21:27 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (5.8ms)
+Completed 200 OK in 365ms (Views: 340.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/pages/home" for 127.0.0.1 at 2017-05-20 16:21:56 +0200
+Processing by PagesController#connexion as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"pVjTpwLH5+WLp1zH4DJa37Vs80ZSSfkx0/bPr9MZ9m5YCBsne6bf6KLNMpp+jT1bJ+hW//tVlaLR5SDcaWRd5w==", "nom"=>"admin", "email"=>"hanna.benjedidia@gmail.com", "password"=>"[FILTERED]"}
+  [1m[36mAdministrateur Load (0.7ms)[0m  [1m[34mSELECT  "administrateurs".* FROM "administrateurs" WHERE "administrateurs"."nom" = $1 AND "administrateurs"."email" = $2 AND "administrateurs"."password" = $3 ORDER BY "administrateurs"."id" ASC LIMIT $4[0m  [["nom", "admin"], ["email", "hanna.benjedidia@gmail.com"], ["password", "admin"], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."surname" = $1 AND "teachers"."email" = $2 AND "teachers"."password" = $3 AND "teachers"."role" = $4 ORDER BY "teachers"."id" ASC LIMIT $5[0m  [["surname", "admin"], ["email", "hanna.benjedidia@gmail.com"], ["password", "admin"], ["role", "accepte"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/admin
+Completed 302 Found in 18ms (ActiveRecord: 7.1ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 16:21:56 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 14ms (Views: 12.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 16:30:30 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 85ms (Views: 83.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 16:30:32 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 165ms (Views: 163.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 16:38:15 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 24ms (Views: 21.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/vendor/assets/stylesheets/bootstrap-3.3.7-dist/css/bootstrap.min.css" for 127.0.0.1 at 2017-05-20 16:38:15 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/vendor/assets/stylesheets/bootstrap-3.3.7-dist/css/bootstrap.min.css"):
+  
+actionpack (5.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.5.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.2) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.2) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.2) lib/rails/engine.rb:522:in `call'
+puma (3.8.2) lib/puma/configuration.rb:224:in `call'
+puma (3.8.2) lib/puma/server.rb:600:in `handle_request'
+puma (3.8.2) lib/puma/server.rb:435:in `process_client'
+puma (3.8.2) lib/puma/server.rb:299:in `block in run'
+puma (3.8.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  Rendering /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.3ms)
+  Rendered collection of /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb [16 times] (30.0ms)
+  Rendered /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (25.4ms)
+  Rendering /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (111.5ms)
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 16:57:02 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.1ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (couldn't find file 'bootstrap.min' with type 'text/css'
+Checked in these paths: 
+  /home/bouchaud/Documents/IPW/Projet_Web/Site/projet_web/app/assets/config
+  /home/bouchaud/Documents/IPW/Projet_Web/Site/projet_web/app/assets/images
+  /home/bouchaud/Documents/IPW/Projet_Web/Site/projet_web/app/assets/javascripts
+  /home/bouchaud/Documents/IPW/Projet_Web/Site/projet_web/app/assets/stylesheets
+  /home/bouchaud/Documents/IPW/Projet_Web/Site/projet_web/vendor/assets/javascripts
+  /home/bouchaud/Documents/IPW/Projet_Web/Site/projet_web/vendor/assets/stylesheets
+  /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/jquery-rails-4.3.1/vendor/assets/javascripts
+  /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/coffee-rails-4.2.1/lib/assets/javascripts
+  /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actioncable-5.0.2/lib/assets/compiled
+  /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-source-5.0.0/lib/assets/javascripts):
+    4:     <title>ProjetWeb</title>
+    5:     <%= csrf_meta_tags %>
+    6: 
+    7:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    8:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    9:   </head>
+   10: 
+  
+app/assets/stylesheets/application.css:13
+app/views/layouts/application.html.erb:7:in `_app_views_layouts_application_html_erb___4359807427448829595_70129400787640'
+  Rendering /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (4.8ms)
+  Rendering /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendering /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (29.6ms)
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 16:57:13 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.9ms)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (couldn't find file 'bootstrap' with type 'text/css'
+Checked in these paths: 
+  /home/bouchaud/Documents/IPW/Projet_Web/Site/projet_web/app/assets/config
+  /home/bouchaud/Documents/IPW/Projet_Web/Site/projet_web/app/assets/images
+  /home/bouchaud/Documents/IPW/Projet_Web/Site/projet_web/app/assets/javascripts
+  /home/bouchaud/Documents/IPW/Projet_Web/Site/projet_web/app/assets/stylesheets
+  /home/bouchaud/Documents/IPW/Projet_Web/Site/projet_web/vendor/assets/javascripts
+  /home/bouchaud/Documents/IPW/Projet_Web/Site/projet_web/vendor/assets/stylesheets
+  /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/jquery-rails-4.3.1/vendor/assets/javascripts
+  /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/coffee-rails-4.2.1/lib/assets/javascripts
+  /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actioncable-5.0.2/lib/assets/compiled
+  /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/turbolinks-source-5.0.0/lib/assets/javascripts):
+    4:     <title>ProjetWeb</title>
+    5:     <%= csrf_meta_tags %>
+    6: 
+    7:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    8:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    9:   </head>
+   10: 
+  
+app/assets/stylesheets/application.css:13
+app/views/layouts/application.html.erb:7:in `_app_views_layouts_application_html_erb___4359807427448829595_70129449052820'
+  Rendering /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (4.0ms)
+  Rendering /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendering /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (23.7ms)
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 16:57:24 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 32ms (Views: 31.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 16:59:29 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (1.0ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 113ms (Views: 109.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 16:59:34 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 28ms (Views: 25.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 17:01:46 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 31ms (Views: 27.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/inscription" for 127.0.0.1 at 2017-05-20 17:07:50 +0200
+Processing by PagesController#inscription as HTML
+  Rendering pages/inscription.html.erb within layouts/application
+  Rendered pages/inscription.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 24ms (Views: 23.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 17:08:03 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 18ms (Views: 16.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/pages/home" for 127.0.0.1 at 2017-05-20 17:08:13 +0200
+Processing by PagesController#connexion as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"mBBRgkk/7rKboQddgOCY2eLPlwmcNv2jj2BlKz0ha9SHTBWlnqPSRUHi14NaJHk9psb90j6a2juh0NMwMwLn9g==", "nom"=>"d", "email"=>"d@d", "password"=>"[FILTERED]"}
+  [1m[36mAdministrateur Load (1.3ms)[0m  [1m[34mSELECT  "administrateurs".* FROM "administrateurs" WHERE "administrateurs"."nom" = $1 AND "administrateurs"."email" = $2 AND "administrateurs"."password" = $3 ORDER BY "administrateurs"."id" ASC LIMIT $4[0m  [["nom", "d"], ["email", "d@d"], ["password", "d"], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.7ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."surname" = $1 AND "teachers"."email" = $2 AND "teachers"."password" = $3 AND "teachers"."role" = $4 ORDER BY "teachers"."id" ASC LIMIT $5[0m  [["surname", "d"], ["email", "d@d"], ["password", "d"], ["role", "accepte"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/prof
+Completed 302 Found in 10ms (ActiveRecord: 3.2ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 17:08:13 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.5ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 41ms (Views: 15.0ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 17:09:02 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 18ms (Views: 17.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 17:22:04 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 33ms (Views: 28.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 17:22:58 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 26ms (Views: 24.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/pages/home" for 127.0.0.1 at 2017-05-20 17:23:03 +0200
+Processing by PagesController#connexion as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Lx/YZHQtskd0v6tWJ51p2k+LdxTI6O1Xxa5KP9SBjprSTxDkDUyKSl3VxQu5Ig5e3Q/SrWH0gcTHvaVMbvwlEw==", "nom"=>"d", "email"=>"d@d", "password"=>"[FILTERED]"}
+  [1m[36mAdministrateur Load (0.3ms)[0m  [1m[34mSELECT  "administrateurs".* FROM "administrateurs" WHERE "administrateurs"."nom" = $1 AND "administrateurs"."email" = $2 AND "administrateurs"."password" = $3 ORDER BY "administrateurs"."id" ASC LIMIT $4[0m  [["nom", "d"], ["email", "d@d"], ["password", "d"], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."surname" = $1 AND "teachers"."email" = $2 AND "teachers"."password" = $3 AND "teachers"."role" = $4 ORDER BY "teachers"."id" ASC LIMIT $5[0m  [["surname", "d"], ["email", "d@d"], ["password", "d"], ["role", "accepte"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/prof
+Completed 302 Found in 3ms (ActiveRecord: 0.7ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 17:23:03 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.6ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.5ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 23ms (Views: 20.8ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 17:27:35 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 21ms (Views: 19.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 17:34:52 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 24ms (Views: 22.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/pages/home" for 127.0.0.1 at 2017-05-20 17:44:24 +0200
+Processing by PagesController#connexion as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4Yy4HbWJ3q5CbSiDM/Hzcilp5V3cms1a6KGKod1onxUc3HCdzOjmo2sHRt6tTpT2u+1A5HWGocnqsmXSZxU0nA==", "nom"=>"d", "email"=>"d@d", "password"=>"[FILTERED]"}
+  [1m[36mAdministrateur Load (0.8ms)[0m  [1m[34mSELECT  "administrateurs".* FROM "administrateurs" WHERE "administrateurs"."nom" = $1 AND "administrateurs"."email" = $2 AND "administrateurs"."password" = $3 ORDER BY "administrateurs"."id" ASC LIMIT $4[0m  [["nom", "d"], ["email", "d@d"], ["password", "d"], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."surname" = $1 AND "teachers"."email" = $2 AND "teachers"."password" = $3 AND "teachers"."role" = $4 ORDER BY "teachers"."id" ASC LIMIT $5[0m  [["surname", "d"], ["email", "d@d"], ["password", "d"], ["role", "accepte"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/prof
+Completed 302 Found in 3ms (ActiveRecord: 1.1ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 17:44:24 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.5ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 19ms (Views: 15.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 17:45:18 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 22ms (Views: 19.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 17:47:38 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 21ms (Views: 20.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 17:48:04 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 21ms (Views: 19.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 17:54:21 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 27ms (Views: 24.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 17:55:02 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 24ms (Views: 21.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:00:30 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 25ms (Views: 23.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:00:32 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 23ms (Views: 21.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:07:56 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 29ms (Views: 25.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:08:52 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 23ms (Views: 20.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:08:55 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 32ms (Views: 30.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:09:42 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 27ms (Views: 24.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:10:33 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 25ms (Views: 23.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:10:41 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 28ms (Views: 24.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:11:24 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 19ms (Views: 17.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:11:26 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 16ms (Views: 15.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:11:45 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 24ms (Views: 21.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:11:48 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 33ms (Views: 30.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:13:25 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 29ms (Views: 24.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:13:29 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 23ms (Views: 21.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:17:05 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 27ms (Views: 24.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:23:19 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (16.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (31.4ms)
+Completed 200 OK in 758ms (Views: 719.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:25:10 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 27ms (Views: 26.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:25:31 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 24ms (Views: 21.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:25:56 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 24ms (Views: 21.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:26:19 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 28ms (Views: 24.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:28:28 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 21ms (Views: 18.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:28:46 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 22ms (Views: 20.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:30:12 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 27ms (Views: 24.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:30:15 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 17ms (Views: 15.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:30:39 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 25ms (Views: 23.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/pages/home" for 127.0.0.1 at 2017-05-20 18:31:11 +0200
+Processing by PagesController#connexion as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"m/CR+68rHRrvf08q3qJKiYNgLm1/eYwkifVcs5pcEL34UP2i9xYdfmfXfGd2/zGe3A+WsfaYaaQnRrQk2dU5Yw==", "nom"=>"", "email"=>"", "password"=>"[FILTERED]"}
+Redirected to http://localhost:3000/pages/home
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:31:11 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 17ms (Views: 15.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/pages/home" for 127.0.0.1 at 2017-05-20 18:31:14 +0200
+Processing by PagesController#connexion as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"DDFkoLU21qUwuRlz4rGEG93xiixSdz5pa0nNFSHwxj9vkQj57QvWwbgRKj5K7P8Mgp4y8NuW2+nF+iWCYnnv4Q==", "nom"=>"", "email"=>"", "password"=>"[FILTERED]"}
+Redirected to http://localhost:3000/pages/home
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:31:14 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 20ms (Views: 18.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/pages/home" for 127.0.0.1 at 2017-05-20 18:31:24 +0200
+Processing by PagesController#connexion as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"z8L93Xd1p+KbpRVmHRSiXm6eR5qnb4MnXC0qvODsqgisYpGEL0inhhMNJiu1SdlJMfH/Ri6OZqfynsIro2WD1g==", "nom"=>"d", "email"=>"d@d", "password"=>"[FILTERED]"}
+  [1m[36mAdministrateur Load (19.8ms)[0m  [1m[34mSELECT  "administrateurs".* FROM "administrateurs" WHERE "administrateurs"."nom" = $1 AND "administrateurs"."email" = $2 AND "administrateurs"."password" = $3 ORDER BY "administrateurs"."id" ASC LIMIT $4[0m  [["nom", "d"], ["email", "d@d"], ["password", "d"], ["LIMIT", 1]]
+  [1m[36mTeacher Load (10.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."surname" = $1 AND "teachers"."email" = $2 AND "teachers"."password" = $3 AND "teachers"."role" = $4 ORDER BY "teachers"."id" ASC LIMIT $5[0m  [["surname", "d"], ["email", "d@d"], ["password", "d"], ["role", "accepte"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/prof
+Completed 302 Found in 318ms (ActiveRecord: 282.5ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 18:31:24 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (1.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (21.8ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (26.0ms)
+Completed 200 OK in 105ms (Views: 38.3ms | ActiveRecord: 31.1ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:33:04 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 17ms (Views: 15.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:33:31 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 21ms (Views: 19.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:33:49 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 22ms (Views: 19.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:35:28 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 24ms (Views: 21.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:36:51 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 22ms (Views: 19.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:37:47 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 29ms (Views: 26.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:38:33 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 27ms (Views: 23.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:39:00 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 25ms (Views: 23.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:40:54 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 23ms (Views: 18.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:41:30 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 24ms (Views: 21.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:42:08 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 24ms (Views: 21.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:42:50 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 24ms (Views: 23.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:42:52 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 18ms (Views: 15.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:43:46 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 24ms (Views: 21.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:44:34 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 25ms (Views: 22.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:44:44 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 21ms (Views: 19.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:46:14 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (8.8ms)
+Completed 200 OK in 29ms (Views: 26.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:48:18 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 24ms (Views: 21.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:48:38 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 20ms (Views: 18.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:48:53 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 24ms (Views: 21.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:53:59 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 36ms (Views: 34.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:54:28 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 27ms (Views: 25.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:55:20 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 16ms (Views: 15.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:56:04 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 21ms (Views: 19.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:56:06 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 24ms (Views: 21.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 18:56:22 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 23ms (Views: 20.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:00:23 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 25ms (Views: 22.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:04:30 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 24ms (Views: 21.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:07:17 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 29ms (Views: 24.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:07:18 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 21ms (Views: 20.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:07:55 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 21ms (Views: 18.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:21:30 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 25ms (Views: 22.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:21:33 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 23ms (Views: 22.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:21:34 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 18ms (Views: 17.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/inscription" for 127.0.0.1 at 2017-05-20 19:21:36 +0200
+Processing by PagesController#inscription as HTML
+  Rendering pages/inscription.html.erb within layouts/application
+  Rendered pages/inscription.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 17ms (Views: 16.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:23:15 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 22ms (Views: 20.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:24:58 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 27ms (Views: 23.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/inscription" for 127.0.0.1 at 2017-05-20 19:25:05 +0200
+Processing by PagesController#inscription as HTML
+  Rendering pages/inscription.html.erb within layouts/application
+  Rendered pages/inscription.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 18ms (Views: 17.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/inscription" for 127.0.0.1 at 2017-05-20 19:25:08 +0200
+Processing by PagesController#inscription as HTML
+  Rendering pages/inscription.html.erb within layouts/application
+  Rendered pages/inscription.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 29ms (Views: 27.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:25:36 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 27ms (Views: 25.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:25:37 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 23ms (Views: 22.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:25:38 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 26ms (Views: 23.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:25:38 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 22ms (Views: 19.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:26:14 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 20ms (Views: 18.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:26:18 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 19ms (Views: 17.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:26:26 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 17ms (Views: 16.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:26:58 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 29ms (Views: 27.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/inscription" for 127.0.0.1 at 2017-05-20 19:27:17 +0200
+Processing by PagesController#inscription as HTML
+  Rendering pages/inscription.html.erb within layouts/application
+  Rendered pages/inscription.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 18ms (Views: 16.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/pages/home" for 127.0.0.1 at 2017-05-20 19:27:52 +0200
+Processing by PagesController#connexion as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"2bMIu610Vibpvz4abtOYPwXCdv3Ll12stPSbDcxyL2S6E2Ti9UlWQmEXDVfGjuMoWq3OIUJ2uCwaR3Oaj/sGug==", "nom"=>"d", "email"=>"d@d", "password"=>"[FILTERED]"}
+  [1m[36mAdministrateur Load (0.9ms)[0m  [1m[34mSELECT  "administrateurs".* FROM "administrateurs" WHERE "administrateurs"."nom" = $1 AND "administrateurs"."email" = $2 AND "administrateurs"."password" = $3 ORDER BY "administrateurs"."id" ASC LIMIT $4[0m  [["nom", "d"], ["email", "d@d"], ["password", "d"], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."surname" = $1 AND "teachers"."email" = $2 AND "teachers"."password" = $3 AND "teachers"."role" = $4 ORDER BY "teachers"."id" ASC LIMIT $5[0m  [["surname", "d"], ["email", "d@d"], ["password", "d"], ["role", "accepte"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/prof
+Completed 302 Found in 5ms (ActiveRecord: 1.4ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 19:27:52 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 28ms (Views: 25.0ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/pages/home" for 127.0.0.1 at 2017-05-20 19:28:35 +0200
+Processing by PagesController#connexion as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"2bMIu610Vibpvz4abtOYPwXCdv3Ll12stPSbDcxyL2S6E2Ti9UlWQmEXDVfGjuMoWq3OIUJ2uCwaR3Oaj/sGug==", "nom"=>"d", "email"=>"d@d", "password"=>"[FILTERED]"}
+  [1m[36mAdministrateur Load (0.3ms)[0m  [1m[34mSELECT  "administrateurs".* FROM "administrateurs" WHERE "administrateurs"."nom" = $1 AND "administrateurs"."email" = $2 AND "administrateurs"."password" = $3 ORDER BY "administrateurs"."id" ASC LIMIT $4[0m  [["nom", "d"], ["email", "d@d"], ["password", "l"], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."surname" = $1 AND "teachers"."email" = $2 AND "teachers"."password" = $3 AND "teachers"."role" = $4 ORDER BY "teachers"."id" ASC LIMIT $5[0m  [["surname", "d"], ["email", "d@d"], ["password", "l"], ["role", "accepte"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/home
+Completed 302 Found in 3ms (ActiveRecord: 0.6ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:28:35 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 16ms (Views: 15.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:29:57 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 21ms (Views: 19.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:34:49 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 24ms (Views: 21.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:36:03 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 24ms (Views: 21.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:38:16 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 21ms (Views: 19.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:39:36 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 35ms (Views: 31.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:41:47 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 23ms (Views: 21.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:42:18 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 24ms (Views: 21.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:42:38 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 19ms (Views: 17.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/pages/home" for 127.0.0.1 at 2017-05-20 19:43:09 +0200
+Processing by PagesController#connexion as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"u9+7+yk4zzKKbqp9RasbkGWeGI+RMajwa9tEi85FUh/Yf9eicQXPVgLGmTDt9mCHOvGgUxjQTXDFaKwcjcx7wQ==", "password"=>"[FILTERED]"}
+  [1m[36mAdministrateur Load (0.4ms)[0m  [1m[34mSELECT  "administrateurs".* FROM "administrateurs" WHERE "administrateurs"."nom" IS NULL AND "administrateurs"."email" IS NULL AND "administrateurs"."password" = $1 ORDER BY "administrateurs"."id" ASC LIMIT $2[0m  [["password", "admin"], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."surname" IS NULL AND "teachers"."email" IS NULL AND "teachers"."password" = $1 AND "teachers"."role" = $2 ORDER BY "teachers"."id" ASC LIMIT $3[0m  [["password", "admin"], ["role", "accepte"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/home
+Completed 302 Found in 4ms (ActiveRecord: 0.9ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:43:10 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 18ms (Views: 17.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:43:47 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 27ms (Views: 25.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/pages/home" for 127.0.0.1 at 2017-05-20 19:46:31 +0200
+Processing by PagesController#connexion as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Z2rpchmJyazOwDSIAcZc+0VcDj6sMGqgXWOYhjJl6VUEyoUrQbTJyEZoB8WpmyfsGjO24iXRjyDz0HARcezAiw==", "nom"=>"admin", "email"=>"hanna.benjedidia@gmail.com", "password"=>"[FILTERED]"}
+  [1m[36mAdministrateur Load (1.2ms)[0m  [1m[34mSELECT  "administrateurs".* FROM "administrateurs" WHERE "administrateurs"."nom" = $1 AND "administrateurs"."email" = $2 AND "administrateurs"."password" = $3 ORDER BY "administrateurs"."id" ASC LIMIT $4[0m  [["nom", "admin"], ["email", "hanna.benjedidia@gmail.com"], ["password", "admin"], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.7ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."surname" = $1 AND "teachers"."email" = $2 AND "teachers"."password" = $3 AND "teachers"."role" = $4 ORDER BY "teachers"."id" ASC LIMIT $5[0m  [["surname", "admin"], ["email", "hanna.benjedidia@gmail.com"], ["password", "admin"], ["role", "accepte"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/admin
+Completed 302 Found in 9ms (ActiveRecord: 2.9ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 19:46:31 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 19ms (Views: 17.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:46:38 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 18ms (Views: 16.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:47:03 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 19ms (Views: 17.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/pages/home" for 127.0.0.1 at 2017-05-20 19:47:29 +0200
+Processing by PagesController#connexion as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"aYxAezh4N5IZledSA9w1CGCk8bvKLvswU95M8hJa4YcKLCwiYEU39pE91B+rgU4fP8tJZ0PPHrD9baRlUdPIWQ==", "password"=>"[FILTERED]"}
+  [1m[36mAdministrateur Load (0.4ms)[0m  [1m[34mSELECT  "administrateurs".* FROM "administrateurs" WHERE "administrateurs"."nom" IS NULL AND "administrateurs"."email" IS NULL AND "administrateurs"."password" = $1 ORDER BY "administrateurs"."id" ASC LIMIT $2[0m  [["password", "admin"], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."surname" IS NULL AND "teachers"."email" IS NULL AND "teachers"."password" = $1 AND "teachers"."role" = $2 ORDER BY "teachers"."id" ASC LIMIT $3[0m  [["password", "admin"], ["role", "accepte"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/home
+Completed 302 Found in 3ms (ActiveRecord: 0.8ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:47:29 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 17ms (Views: 16.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:48:57 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 20ms (Views: 18.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:50:25 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 18ms (Views: 16.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:50:59 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 26ms (Views: 24.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:51:20 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 21ms (Views: 18.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:51:37 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 20ms (Views: 18.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:55:02 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 21ms (Views: 19.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:58:06 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 23ms (Views: 20.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 19:58:33 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 32ms (Views: 29.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 20:00:05 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 18ms (Views: 17.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 20:00:58 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 17ms (Views: 16.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 20:02:15 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 17ms (Views: 16.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/pages/home" for 127.0.0.1 at 2017-05-20 20:02:27 +0200
+Processing by PagesController#connexion as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"7Ebfh8RXs4uk7ZIZT959hxBQeZzfwOMbike4WoEOMoaP5rPenGqz7yxFoVTngwaQTz/BQFYhBpsk9FDNwocbWA==", "nom"=>"admin", "email"=>"hanna.benjedidia@gmail.com", "password"=>"[FILTERED]"}
+  [1m[36mAdministrateur Load (1.1ms)[0m  [1m[34mSELECT  "administrateurs".* FROM "administrateurs" WHERE "administrateurs"."nom" = $1 AND "administrateurs"."email" = $2 AND "administrateurs"."password" = $3 ORDER BY "administrateurs"."id" ASC LIMIT $4[0m  [["nom", "admin"], ["email", "hanna.benjedidia@gmail.com"], ["password", "admin"], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."surname" = $1 AND "teachers"."email" = $2 AND "teachers"."password" = $3 AND "teachers"."role" = $4 ORDER BY "teachers"."id" ASC LIMIT $5[0m  [["surname", "admin"], ["email", "hanna.benjedidia@gmail.com"], ["password", "admin"], ["role", "accepte"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/admin
+Completed 302 Found in 4ms (ActiveRecord: 1.5ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:02:27 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 17ms (Views: 16.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:04:27 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.6ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 19ms (Views: 17.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:06:25 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 22ms (Views: 19.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 20:06:27 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 28ms (Views: 26.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:06:56 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 20ms (Views: 17.7ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/pages/home" for 127.0.0.1 at 2017-05-20 20:07:38 +0200
+Processing by PagesController#connexion as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"7Ebfh8RXs4uk7ZIZT959hxBQeZzfwOMbike4WoEOMoaP5rPenGqz7yxFoVTngwaQTz/BQFYhBpsk9FDNwocbWA==", "nom"=>"g", "email"=>"g@g", "password"=>"[FILTERED]"}
+  [1m[36mAdministrateur Load (0.4ms)[0m  [1m[34mSELECT  "administrateurs".* FROM "administrateurs" WHERE "administrateurs"."nom" = $1 AND "administrateurs"."email" = $2 AND "administrateurs"."password" = $3 ORDER BY "administrateurs"."id" ASC LIMIT $4[0m  [["nom", "g"], ["email", "g@g"], ["password", "g"], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."surname" = $1 AND "teachers"."email" = $2 AND "teachers"."password" = $3 AND "teachers"."role" = $4 ORDER BY "teachers"."id" ASC LIMIT $5[0m  [["surname", "g"], ["email", "g@g"], ["password", "g"], ["role", "accepte"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/home
+Completed 302 Found in 4ms (ActiveRecord: 0.8ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 20:07:38 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 19ms (Views: 18.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/pages/home" for 127.0.0.1 at 2017-05-20 20:07:50 +0200
+Processing by PagesController#connexion as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RNiHoKo0DPjv7saFnGCAcmzs1Rw50G0aD+83IW8RBScneOv58gkMnGdG9cg0PftlM4NtwLAxiJqhXN+2LJgs+Q==", "nom"=>"admin", "email"=>"hanna.benjedidia@gmail.com", "password"=>"[FILTERED]"}
+  [1m[36mAdministrateur Load (0.3ms)[0m  [1m[34mSELECT  "administrateurs".* FROM "administrateurs" WHERE "administrateurs"."nom" = $1 AND "administrateurs"."email" = $2 AND "administrateurs"."password" = $3 ORDER BY "administrateurs"."id" ASC LIMIT $4[0m  [["nom", "admin"], ["email", "hanna.benjedidia@gmail.com"], ["password", "admin"], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."surname" = $1 AND "teachers"."email" = $2 AND "teachers"."password" = $3 AND "teachers"."role" = $4 ORDER BY "teachers"."id" ASC LIMIT $5[0m  [["surname", "admin"], ["email", "hanna.benjedidia@gmail.com"], ["password", "admin"], ["role", "accepte"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/admin
+Completed 302 Found in 4ms (ActiveRecord: 0.7ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:07:50 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 22ms (Views: 20.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:10:20 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 20ms (Views: 18.6ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/pages/home" for 127.0.0.1 at 2017-05-20 20:10:36 +0200
+Processing by PagesController#connexion as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RNiHoKo0DPjv7saFnGCAcmzs1Rw50G0aD+83IW8RBScneOv58gkMnGdG9cg0PftlM4NtwLAxiJqhXN+2LJgs+Q==", "nom"=>"g", "email"=>"g@g", "password"=>"[FILTERED]"}
+  [1m[36mAdministrateur Load (0.4ms)[0m  [1m[34mSELECT  "administrateurs".* FROM "administrateurs" WHERE "administrateurs"."nom" = $1 AND "administrateurs"."email" = $2 AND "administrateurs"."password" = $3 ORDER BY "administrateurs"."id" ASC LIMIT $4[0m  [["nom", "g"], ["email", "g@g"], ["password", "g"], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."surname" = $1 AND "teachers"."email" = $2 AND "teachers"."password" = $3 AND "teachers"."role" = $4 ORDER BY "teachers"."id" ASC LIMIT $5[0m  [["surname", "g"], ["email", "g@g"], ["password", "g"], ["role", "accepte"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/home
+Completed 302 Found in 4ms (ActiveRecord: 0.7ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 20:10:36 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 26ms (Views: 25.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/pages/home" for 127.0.0.1 at 2017-05-20 20:10:47 +0200
+Processing by PagesController#connexion as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9biS+WKsza/eVSf5WLWJ1sFVY/LDp75hEEemxVoG262WGP6gOpHNy1b9FLTw6PLBnjrbLkpGW+G+9E5SGY/ycw==", "nom"=>"admin", "email"=>"hanna.benjedidia@gmail.com", "password"=>"[FILTERED]"}
+  [1m[36mAdministrateur Load (0.4ms)[0m  [1m[34mSELECT  "administrateurs".* FROM "administrateurs" WHERE "administrateurs"."nom" = $1 AND "administrateurs"."email" = $2 AND "administrateurs"."password" = $3 ORDER BY "administrateurs"."id" ASC LIMIT $4[0m  [["nom", "admin"], ["email", "hanna.benjedidia@gmail.com"], ["password", "admin"], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."surname" = $1 AND "teachers"."email" = $2 AND "teachers"."password" = $3 AND "teachers"."role" = $4 ORDER BY "teachers"."id" ASC LIMIT $5[0m  [["surname", "admin"], ["email", "hanna.benjedidia@gmail.com"], ["password", "admin"], ["role", "accepte"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/admin
+Completed 302 Found in 3ms (ActiveRecord: 0.8ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:10:47 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 18ms (Views: 17.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pages/inscription" for 127.0.0.1 at 2017-05-20 20:11:23 +0200
+Processing by PagesController#inscription as HTML
+  Rendering pages/inscription.html.erb within layouts/application
+  Rendered pages/inscription.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 18ms (Views: 17.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/pages/inscription" for 127.0.0.1 at 2017-05-20 20:11:35 +0200
+Processing by PagesController#inscrire as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Jt9J+CurkwT3vhfZangf9QQ0ZuP5I39qH7UfBXwVMEfVeExfnjZ9Mh7zvLK8Qk03qmIFDFhd1Io+fsTKvIaoKw==", "nom"=>"g", "prenom"=>"g", "email"=>"g@g", "password"=>"[FILTERED]"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (23.5ms)[0m  [1m[32mINSERT INTO "teachers" ("surname", "name", "password", "email", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["surname", "g"], ["name", "g"], ["password", "g"], ["email", "g@g"], ["role", "attente"], ["created_at", 2017-05-20 18:11:35 UTC], ["updated_at", 2017-05-20 18:11:35 UTC]]
+  [1m[35m (53.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/pages/home
+Completed 302 Found in 81ms (ActiveRecord: 77.1ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 20:11:35 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 16ms (Views: 14.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/pages/home" for 127.0.0.1 at 2017-05-20 20:11:48 +0200
+Processing by PagesController#connexion as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"vZXj84sA0H/tRysiOz2BkQkCixPnXFD7zhs5ogLbGQreNY+q0z3QG2XvGG+TYPqGVm0zz269tXtgqNE1QVIw1A==", "nom"=>"admin", "email"=>"hanna.benjedidia@gmail.com", "password"=>"[FILTERED]"}
+  [1m[36mAdministrateur Load (0.4ms)[0m  [1m[34mSELECT  "administrateurs".* FROM "administrateurs" WHERE "administrateurs"."nom" = $1 AND "administrateurs"."email" = $2 AND "administrateurs"."password" = $3 ORDER BY "administrateurs"."id" ASC LIMIT $4[0m  [["nom", "admin"], ["email", "hanna.benjedidia@gmail.com"], ["password", "admin"], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."surname" = $1 AND "teachers"."email" = $2 AND "teachers"."password" = $3 AND "teachers"."role" = $4 ORDER BY "teachers"."id" ASC LIMIT $5[0m  [["surname", "admin"], ["email", "hanna.benjedidia@gmail.com"], ["password", "admin"], ["role", "accepte"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/admin
+Completed 302 Found in 3ms (ActiveRecord: 0.7ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:11:48 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 20ms (Views: 18.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:13:22 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 26ms (Views: 24.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:13:50 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.6ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 25ms (Views: 22.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:14:44 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 27ms (Views: 25.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:18:00 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 22ms (Views: 19.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:21:47 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 19ms (Views: 17.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:27:13 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.6ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 34ms (Views: 29.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:28:19 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 23ms (Views: 20.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:28:40 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 28ms (Views: 25.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:30:22 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 20ms (Views: 18.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:30:54 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 20ms (Views: 18.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:34:26 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 22ms (Views: 19.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:35:02 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 26ms (Views: 23.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:37:03 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 21ms (Views: 18.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:37:05 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 21ms (Views: 19.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:39:34 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.6ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 23ms (Views: 20.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:40:05 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 21ms (Views: 18.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:40:51 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 21ms (Views: 19.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 20:41:04 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 19ms (Views: 17.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/inscription" for 127.0.0.1 at 2017-05-20 20:41:11 +0200
+Processing by PagesController#inscription as HTML
+  Rendering pages/inscription.html.erb within layouts/application
+  Rendered pages/inscription.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 26ms (Views: 23.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/pages/inscription" for 127.0.0.1 at 2017-05-20 20:41:22 +0200
+Processing by PagesController#inscrire as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"B0xTGs3TGqMyZFUYBZOCWbWI8bIDIUnJQQPNYMcGVsb061a9eE70ldsp/nPTqdCbG96SXaJf4ilgyBavB5XOqg==", "nom"=>"h", "prenom"=>"h", "email"=>"h@h", "password"=>"[FILTERED]"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "teachers" ("surname", "name", "password", "email", "role", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["surname", "h"], ["name", "h"], ["password", "h"], ["email", "h@h"], ["role", "attente"], ["created_at", 2017-05-20 18:41:22 UTC], ["updated_at", 2017-05-20 18:41:22 UTC]]
+  [1m[35m (19.0ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/pages/home
+Completed 302 Found in 22ms (ActiveRecord: 19.5ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 20:41:22 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 19ms (Views: 18.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/pages/home" for 127.0.0.1 at 2017-05-20 20:41:33 +0200
+Processing by PagesController#connexion as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Kg1ZAgpuCc9mIgpjmYtJ/tOpLRC+xB/1v1zTP2+h+xdJrTVbUlMJq+6KOS4x1jLpjMaVzDcl+nUR7zuoLCjSyQ==", "nom"=>"admin", "email"=>"hanna.benjedidia@gmail.com", "password"=>"[FILTERED]"}
+  [1m[36mAdministrateur Load (0.5ms)[0m  [1m[34mSELECT  "administrateurs".* FROM "administrateurs" WHERE "administrateurs"."nom" = $1 AND "administrateurs"."email" = $2 AND "administrateurs"."password" = $3 ORDER BY "administrateurs"."id" ASC LIMIT $4[0m  [["nom", "admin"], ["email", "hanna.benjedidia@gmail.com"], ["password", "admin"], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."surname" = $1 AND "teachers"."email" = $2 AND "teachers"."password" = $3 AND "teachers"."role" = $4 ORDER BY "teachers"."id" ASC LIMIT $5[0m  [["surname", "admin"], ["email", "hanna.benjedidia@gmail.com"], ["password", "admin"], ["role", "accepte"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/admin
+Completed 302 Found in 3ms (ActiveRecord: 0.9ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:41:33 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 19ms (Views: 17.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:42:51 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 19ms (Views: 17.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:43:02 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 19ms (Views: 17.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:43:12 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 23ms (Views: 20.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/admin" for 127.0.0.1 at 2017-05-20 20:43:25 +0200
+Processing by PagesController#admin as HTML
+  Rendering pages/admin.html.erb within layouts/application
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT "teachers".* FROM "teachers" WHERE "teachers"."role" = $1[0m  [["role", "attente"]]
+  Rendered pages/admin.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 20ms (Views: 18.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 20:44:13 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 18ms (Views: 16.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/pages/home" for 127.0.0.1 at 2017-05-20 20:44:44 +0200
+Processing by PagesController#connexion as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"qKjzZrY3JfH8SfZLkiwSEKqZLO0TtpX5C65YZoXTzbxzdClG8B8MmYlZXllCrZp2YL2Y6i2QfHlBQhOsPA0t1w==", "nom"=>"d", "email"=>"d@d", "password"=>"[FILTERED]"}
+  [1m[36mAdministrateur Load (0.4ms)[0m  [1m[34mSELECT  "administrateurs".* FROM "administrateurs" WHERE "administrateurs"."nom" = $1 AND "administrateurs"."email" = $2 AND "administrateurs"."password" = $3 ORDER BY "administrateurs"."id" ASC LIMIT $4[0m  [["nom", "d"], ["email", "d@d"], ["password", "d"], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."surname" = $1 AND "teachers"."email" = $2 AND "teachers"."password" = $3 AND "teachers"."role" = $4 ORDER BY "teachers"."id" ASC LIMIT $5[0m  [["surname", "d"], ["email", "d@d"], ["password", "d"], ["role", "accepte"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/prof
+Completed 302 Found in 4ms (ActiveRecord: 0.9ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 20:44:44 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 19ms (Views: 16.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/pages/ajoutmatiere" for 127.0.0.1 at 2017-05-20 20:45:14 +0200
+Processing by PagesController#ajoutmatiere as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/ajoutmatiere.html.erb within layouts/application
+  Rendered pages/ajoutmatiere.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 19ms (Views: 16.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 20:47:32 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 21ms (Views: 18.0ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 20:51:06 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 22ms (Views: 18.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/page/home" for 127.0.0.1 at 2017-05-20 20:51:14 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/page/home"):
+  
+actionpack (5.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.5.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.2) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.2) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.2) lib/rails/engine.rb:522:in `call'
+puma (3.8.2) lib/puma/configuration.rb:224:in `call'
+puma (3.8.2) lib/puma/server.rb:600:in `handle_request'
+puma (3.8.2) lib/puma/server.rb:435:in `process_client'
+puma (3.8.2) lib/puma/server.rb:299:in `block in run'
+puma (3.8.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  Rendering /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.0ms)
+  Rendered collection of /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb [16 times] (28.8ms)
+  Rendered /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (24.7ms)
+  Rendering /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (81.1ms)
+Started GET "/page/home" for 127.0.0.1 at 2017-05-20 20:51:26 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/page/home"):
+  
+actionpack (5.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.5.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.2) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.2) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.2) lib/rails/engine.rb:522:in `call'
+puma (3.8.2) lib/puma/configuration.rb:224:in `call'
+puma (3.8.2) lib/puma/server.rb:600:in `handle_request'
+puma (3.8.2) lib/puma/server.rb:435:in `process_client'
+puma (3.8.2) lib/puma/server.rb:299:in `block in run'
+puma (3.8.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  Rendering /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered collection of /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb [16 times] (3.7ms)
+  Rendered /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.1ms)
+  Rendering /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /home/bouchaud/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (28.6ms)
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 20:51:31 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 18ms (Views: 15.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 20:51:33 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 19ms (Views: 17.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/ajoutmatiere" for 127.0.0.1 at 2017-05-20 20:51:37 +0200
+Processing by PagesController#ajoutmatiere as HTML
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/ajoutmatiere.html.erb within layouts/application
+  Rendered pages/ajoutmatiere.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 22ms (Views: 18.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 20:52:27 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.6ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.5ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 23ms (Views: 18.7ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/pages/ajoutmatiere" for 127.0.0.1 at 2017-05-20 20:52:33 +0200
+Processing by PagesController#ajoutmatiere as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/ajoutmatiere.html.erb within layouts/application
+  Rendered pages/ajoutmatiere.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 26ms (Views: 23.8ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/pages/ajoutmatiere" for 127.0.0.1 at 2017-05-20 20:53:10 +0200
+Processing by PagesController#ajouter as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"70CwCX4hNFVBAiCsJOxRgeBTHsdjIhgSnE9XqAkiNsbLokVYp1j5UgSLHgJ3uu7xYOa+LFTRpi/VJHDeh5pP1g==", "matiere"=>"Maths", "debut"=>"01/09/2017", "fin"=>"12/06/2018", "id"=>"1"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (39.3ms)[0m  [1m[32mINSERT INTO "subjects" ("title", "begin", "end", "teacher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Maths"], ["begin", 2017-09-01 00:00:00 UTC], ["end", 2018-06-12 00:00:00 UTC], ["teacher_id", 1], ["created_at", 2017-05-20 18:53:10 UTC], ["updated_at", 2017-05-20 18:53:10 UTC]]
+  [1m[35m (46.0ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/pages/prof
+Completed 302 Found in 97ms (ActiveRecord: 87.9ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 20:53:10 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.9ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.7ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (4.3ms)
+Completed 200 OK in 33ms (Views: 26.0ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 20:55:50 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.5ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 27ms (Views: 22.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 20:56:37 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.5ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 28ms (Views: 24.5ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 20:57:24 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.5ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 25ms (Views: 21.1ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 20:57:26 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 26ms (Views: 23.5ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 20:58:02 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.5ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 24ms (Views: 20.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 20:58:14 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 20ms (Views: 17.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 20:58:25 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 23ms (Views: 20.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 21:01:35 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 21ms (Views: 17.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 21:03:02 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.5ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 23ms (Views: 20.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 21:03:06 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.7ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 24ms (Views: 17.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 21:05:04 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 20ms (Views: 17.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 21:05:23 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.5ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 21ms (Views: 17.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 21:06:40 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 24ms (Views: 20.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 21:07:37 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 24ms (Views: 21.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 21:08:13 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 19ms (Views: 16.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 21:11:43 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 21ms (Views: 17.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/pages/ajoutmatiere" for 127.0.0.1 at 2017-05-20 21:11:59 +0200
+Processing by PagesController#ajoutmatiere as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/ajoutmatiere.html.erb within layouts/application
+  Rendered pages/ajoutmatiere.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 18ms (Views: 16.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 21:12:44 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.6ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.6ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 30ms (Views: 23.6ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 21:14:46 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (2.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 23ms (Views: 18.1ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/pages/ajoutmatiere" for 127.0.0.1 at 2017-05-20 21:14:59 +0200
+Processing by PagesController#ajoutmatiere as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/ajoutmatiere.html.erb within layouts/application
+  Rendered pages/ajoutmatiere.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 25ms (Views: 23.3ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/pages/ajoutmatiere" for 127.0.0.1 at 2017-05-20 21:15:20 +0200
+Processing by PagesController#ajouter as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RkcXmht2Z/P7GJF8ISnJhZ2GCFSfUAloAqEpdHzZD0BipeLLwg+q9L6Rr9Jyf3b1HTOov6ijt1VLyg4C8mF2UA==", "matiere"=>"Français", "debut"=>"12/03/2017", "fin"=>"16/04/2017", "id"=>"1"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "subjects" ("title", "begin", "end", "teacher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Français"], ["begin", 2017-03-12 00:00:00 UTC], ["end", 2017-04-16 00:00:00 UTC], ["teacher_id", 1], ["created_at", 2017-05-20 19:15:20 UTC], ["updated_at", 2017-05-20 19:15:20 UTC]]
+  [1m[35m (23.1ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/pages/prof
+Completed 302 Found in 26ms (ActiveRecord: 23.7ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 21:15:20 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 18ms (Views: 16.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 21:16:50 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 21ms (Views: 18.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 21:16:52 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.6ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 25ms (Views: 20.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/pages/ajoutmatiere" for 127.0.0.1 at 2017-05-20 21:17:13 +0200
+Processing by PagesController#ajoutmatiere as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/ajoutmatiere.html.erb within layouts/application
+  Rendered pages/ajoutmatiere.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 25ms (Views: 23.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 21:18:38 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.5ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 24ms (Views: 21.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/pages/ajoutmatiere" for 127.0.0.1 at 2017-05-20 21:18:44 +0200
+Processing by PagesController#ajoutmatiere as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/ajoutmatiere.html.erb within layouts/application
+  Rendered pages/ajoutmatiere.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 19ms (Views: 17.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/pages/ajoutmatiere" for 127.0.0.1 at 2017-05-20 21:20:31 +0200
+Processing by PagesController#ajoutmatiere as HTML
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/ajoutmatiere.html.erb within layouts/application
+  Rendered pages/ajoutmatiere.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 24ms (Views: 20.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 21:20:38 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 21ms (Views: 18.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/pages/ajoutmatiere" for 127.0.0.1 at 2017-05-20 21:20:41 +0200
+Processing by PagesController#ajoutmatiere as HTML
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/ajoutmatiere.html.erb within layouts/application
+  Rendered pages/ajoutmatiere.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 28ms (Views: 25.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/pages/ajoutmatiere" for 127.0.0.1 at 2017-05-20 21:26:30 +0200
+Processing by PagesController#ajoutmatiere as HTML
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/ajoutmatiere.html.erb within layouts/application
+  Rendered pages/ajoutmatiere.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 22ms (Views: 19.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/ajoutmatiere" for 127.0.0.1 at 2017-05-20 21:27:38 +0200
+Processing by PagesController#ajoutmatiere as HTML
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/ajoutmatiere.html.erb within layouts/application
+  Rendered pages/ajoutmatiere.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 30ms (Views: 26.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/ajoutmatiere" for 127.0.0.1 at 2017-05-20 21:27:54 +0200
+Processing by PagesController#ajoutmatiere as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/ajoutmatiere.html.erb within layouts/application
+  Rendered pages/ajoutmatiere.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 22ms (Views: 19.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pages/ajoutmatiere" for 127.0.0.1 at 2017-05-20 21:30:02 +0200
+Processing by PagesController#ajoutmatiere as HTML
+  [1m[36mTeacher Load (0.6ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/ajoutmatiere.html.erb within layouts/application
+  Rendered pages/ajoutmatiere.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 26ms (Views: 22.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/pages/ajoutmatiere" for 127.0.0.1 at 2017-05-20 21:30:05 +0200
+Processing by PagesController#ajoutmatiere as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/ajoutmatiere.html.erb within layouts/application
+  Rendered pages/ajoutmatiere.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 17ms (Views: 15.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/pages/ajoutmatiere" for 127.0.0.1 at 2017-05-20 21:30:24 +0200
+Processing by PagesController#ajoutmatiere as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/ajoutmatiere.html.erb within layouts/application
+  Rendered pages/ajoutmatiere.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 25ms (Views: 22.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/pages/ajoutmatiere" for 127.0.0.1 at 2017-05-20 21:31:02 +0200
+Processing by PagesController#ajoutmatiere as HTML
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/ajoutmatiere.html.erb within layouts/application
+  Rendered pages/ajoutmatiere.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 20ms (Views: 17.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 21:31:21 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 21ms (Views: 18.5ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/pages/prof" for 127.0.0.1 at 2017-05-20 21:31:25 +0200
+Processing by PagesController#examen as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+Ko2XwKW9HUw8gWrj1/6GjYADryNgpYhMvSY3OsW7ojfxBz1/mORCjTA+U+wBDNpontwaRROL1xQx8mAR+JHEg==", "id_mat"=>"1"}
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 ORDER BY "subjects"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/examprof
+Completed 302 Found in 2ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/examprof" for 127.0.0.1 at 2017-05-20 21:31:25 +0200
+Processing by PagesController#examprof as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/examprof.html.erb within layouts/application
+  [1m[36mExam Load (17.4ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 1]]
+  Rendered pages/examprof.html.erb within layouts/application (18.4ms)
+Completed 200 OK in 41ms (Views: 15.4ms | ActiveRecord: 20.1ms)
+
+
+Started GET "/pages/ajoutmatiere" for 127.0.0.1 at 2017-05-20 21:31:33 +0200
+Processing by PagesController#ajoutmatiere as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/ajoutmatiere.html.erb within layouts/application
+  Rendered pages/ajoutmatiere.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 27ms (Views: 24.3ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/pages/ajoutmatiere" for 127.0.0.1 at 2017-05-20 21:32:01 +0200
+Processing by PagesController#ajouter as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"n4BeEd4dJcV2TkIOzEQ6ohrBU/LoifignxS7VteKAdm7YqtAB2TowjPHfKCfEoXSmnTzGd96Rp3Wf5wgWTJ4yQ==", "matiere"=>"Anglais", "debut"=>"15/06/2017", "fin"=>"16/06/2017", "id"=>"1"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "subjects" ("title", "begin", "end", "teacher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Anglais"], ["begin", 2017-06-15 00:00:00 UTC], ["end", 2017-06-16 00:00:00 UTC], ["teacher_id", 1], ["created_at", 2017-05-20 19:32:01 UTC], ["updated_at", 2017-05-20 19:32:01 UTC]]
+  [1m[35m (26.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/pages/prof
+Completed 302 Found in 29ms (ActiveRecord: 26.6ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-20 21:32:01 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 17ms (Views: 15.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-20 21:32:24 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 18ms (Views: 17.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/inscription" for 127.0.0.1 at 2017-05-20 21:32:39 +0200
+Processing by PagesController#inscription as HTML
+  Rendering pages/inscription.html.erb within layouts/application
+  Rendered pages/inscription.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 25ms (Views: 23.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/inscription" for 127.0.0.1 at 2017-05-20 21:32:41 +0200
+Processing by PagesController#inscription as HTML
+  Rendering pages/inscription.html.erb within layouts/application
+  Rendered pages/inscription.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 28ms (Views: 26.7ms | ActiveRecord: 0.0ms)
+
+
