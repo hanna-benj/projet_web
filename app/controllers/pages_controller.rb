@@ -109,6 +109,8 @@ class PagesController < ApplicationController
 
   def note
     @epreuve = Exam.where(id: params[:id_epreuve]).first
+    session[:id_exam]=@epreuve.id
+    redirect_to '/pages/'
   end
 
 end
