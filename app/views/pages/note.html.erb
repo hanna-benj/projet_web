@@ -1,25 +1,71 @@
 <html>
   <head>
-    <h1>Note de l'examen de <%= @epreuve.title%> par le professeur <%= @prof.surname%>:</h1>
+    <div class="row">
+      <div class="col-md-12 bg-primary">
+        <h1 class="text-center">Note de l'examen de <%= @epreuve.title%> par le professeur <%= @prof.surname%>:</h1>
+      </div>
+    </div>
   </head>
   <body>
+    <div class="row">
+      <div class="col-md-12">
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand">Menu</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="/pages/home">Deconnexion<span class="sr-only"></span></a></li>
+                <li><a href="/pages/examprof">Liste des épreuves</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-5">
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>Nom élève</th>
+              <th>Prénom élève</th>
+              <th>Note</th>
+            </tr>
+          </thead>
+          <%@mark.each do |notes| %>
+          <tbody>
+          <% @eleve = Studient.where(id: notes.studient_id).first %>
+          <tr>
+            <td> <%= @eleve.surname %></td>
+            <td> <%= @eleve.name %> </td>
+            <td> <%= notes.mark %> </td>
+          </tr>
+        </tbody>
+          <% end %>
+        </table>
+      </div>
+      <div class="col-md-6 text-center">
     <%= form_tag "/pages/note", method: :post do %>
-      <label>Nom élève : <input type="text" name="nom"></label><br>
-      <label>Prénom élève : <input type="text" name="prenom"></label><br>
-      <label>Note : <input type="float" name="note"></label><br>
+    <div class="form-group">
+      <label>Nom élève : <input type="text" class="form-control" name="nom"></label>
+    </div>
+    <div class="form-group">
+      <label>Prénom élève : <input type="text" class="form-control" name="prenom"></label>
+    </div>
+    <div class="form-group">
+      <label>Note : <input type="float" class="form-control" name="note"></label>
+    </div>
       <input type="hidden" name="prof" value="<%= @prof.id %>">
       <input type="hidden" name="exam" value="<%= @epreuve.id %>">
-      <input type="submit" value="Ajouter">
+      <input type="submit" class="btn btn-success hover" value="Ajouter">
     <% end %>
-    <br/><br/>
-    <table>
-      <tr><th>Nom élève</th> <th>Prénom élève</th><th>note</th></tr>
-      <%@mark.each do |notes| %>
-      <% @eleve = Studient.where(id: notes.studient_id).first %>
-      <tr><td> <%= @eleve.surname %></td> <td> <%= @eleve.name %> </td><td> <%= notes.mark %> </td> </tr>
-      <% end %>
-    </table>
-    <br />
-    <a href="/pages/examprof">Liste des épreuve</a>
+  </div>
+  </div>
   </body>
 </html>

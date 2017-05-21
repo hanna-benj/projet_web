@@ -1,24 +1,62 @@
 <html>
   <head>
-    <h1>Examen de <%= @matiere.title%> par le professeur <%= @prof.surname%>:</h1>
+    <div class="row">
+      <div class="col-md-12 bg-primary">
+        <h1 class="text-center">Examen de <%= @matiere.title%> par le professeur <%= @prof.surname%>:</h1>
+      </div>
+    </div>
   </head>
   <body>
-    <table>
-    <tr><th>Épreuve</th> <th>Date l'épreuve</th></tr>
+    <div class="row">
+      <div class="col-md-12">
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand">Menu</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="/pages/home">Deconnexion<span class="sr-only"></span></a></li>
+                <li><a href="/pages/prof">Liste des matières</a></li>
+                <li><a href="/pages/ajoutexam">Ajouter une épreuve</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-6">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Épreuve</th>
+          <th>Date de l'épreuve</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
     <%@epreuve.each do |ep| %>
-    <tr><td><%= ep.title %></td> <td> <%= ep.date.strftime("%d/%m/%Y") %></td>
-    <td>
-      <%= form_tag "/pages/examprof", method: "post" do %>
-        <input type="hidden" name="id_epreuve" value="<%= ep.id %>">
-        <input type="submit" value="Notes">
-      <% end %>
-    </td></tr>
+    <tbody>
+      <tr>
+        <td><%= ep.title %></td>
+        <td> <%= ep.date.strftime("%d/%m/%Y") %></td>
+        <td>
+          <%= form_tag "/pages/examprof", method: "post" do %>
+          <input type="hidden" name="id_epreuve" value="<%= ep.id %>">
+          <input type="submit" class="btn btn-primary hover" value="Notes">
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
     <% end %>
   </table>
-  <br />
-    <br />
-    <a href="/pages/ajoutexam">Ajouter une épreuve</a>
-    <br />
-    <a href="/pages/prof">Liste des matières</a>
+</div>
+<div class="col-md-3">
+</div>
+  </div>
   </body>
 </html>

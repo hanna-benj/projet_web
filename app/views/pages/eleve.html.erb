@@ -1,19 +1,62 @@
 <html>
   <head>
-    <h1>Bonjour <%= @eleve.name%>!</h1>
+    <div class="row">
+      <div class="col-md-12 bg-primary">
+        <h1 class="text-center">Bonjour <%= @eleve.name%>!</h1>
+      </div>
+    </div>
   </head>
   <body>
-  <table>
-  <tr><th>Matière</th> <th>Professeur</th> <th>Examens</th> <th>Date de l'examen</th> <th>note</th></tr>
+    <div class="row">
+      <div class="col-md-12">
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand">Menu</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="/pages/home">Deconnexion<span class="sr-only"></span></a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-6">
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Matière</th>
+        <th>Professeur</th>
+        <th>Examens</th>
+        <th>Date de l'examen</th>
+        <th>note</th>
+      </tr>
+    </thead>
   <%@mark.each do |note| %>
+  <tbody>
   <% @epreuve = Exam.where(id: note.exam_id).first %>
   <% @mat = Subject.where(id: @epreuve.subject_id).first %>
   <% @prof = Teacher.where(id: @mat.teacher_id).first %>
-  <tr><td><%= @mat.title %></td> <td>Professeur <%= @prof.surname %></td> <td> <%= @epreuve.title %></td> <td> <%= @epreuve.date.strftime("%d/%m/%Y") %></td> <td><%= note.mark%></td></tr>
+  <tr>
+    <td><%= @mat.title %></td>
+    <td>Professeur <%= @prof.surname %></td>
+    <td> <%= @epreuve.title %></td>
+    <td> <%= @epreuve.date.strftime("%d/%m/%Y") %></td>
+    <td><%= note.mark%></td>
+  </tr>
+  </tbody>
   <% end %>
 </table>
-<br />
-    <br />
-    <a href="/pages/home"> Deconnexion</a>
+</div>
+<div class="col-md-3">
+</div>
+  </div>
   </body>
 </html>
