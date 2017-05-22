@@ -41,6 +41,10 @@ class PagesController < ApplicationController
     @mark = Mark.where(studient_id: @eleve.id)
   end
 
+  def inviteleve
+
+  end
+
   def connexion
     if (params[:nom] != '') && (params[:email] != '') && (params[:password] != '')
       @admin = Administrateur.where(nom: params[:nom], email: params[:email], password: params[:password]).first
@@ -162,6 +166,27 @@ class PagesController < ApplicationController
       end
     else
       redirect_to '/pages/examprof'
+    end
+  end
+
+  def inviter
+    if (params[:nom] != '') && (params[:email] != '') && (params[:prenom] != '')
+      @eleve = Studient.all
+      compteur = 1
+      while compteur > 0 do
+        compteur = 0
+        password = ""
+        8.times{password  << ((rand(2)==1?65:97) + rand(25)).chr}
+        @eleve.each do |mot_de_passe|
+          if mot_de_passe.password == password
+            compteur += 1
+          end
+        end
+      end
+      Studient.create(surname: params[:nom], name: params[:prenom], email: params[:email], password: password)
+    else
+      @nveleve = Studient.where(surname: 'test').first
+      ApplicationMailer.sample_email(@nveleve).deliver
     end
   end
 
