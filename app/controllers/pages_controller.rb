@@ -198,10 +198,9 @@ class PagesController < ApplicationController
           end
         end
       end
-      Studient.create(surname: params[:nom], name: params[:prenom], email: params[:email], password: password)
-    else
-      @nveleve = Studient.where(surname: 'test').first
-      ApplicationMailer.sample_email(@nveleve).deliver
+      @nveleve = Studient.create(surname: params[:nom], name: params[:prenom], email: params[:email], password: password)
+      UsermailerMailer.sample_email(@nveleve).deliver
+      redirect_to '/pages/prof'
     end
     flash[:info] = "L'invitation a bien été envoyé"
     redirect_to '/pages/inviteleve'
