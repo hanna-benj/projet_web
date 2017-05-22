@@ -65,6 +65,11 @@
       <input type="hidden" name="exam" value="<%= @epreuve.id %>">
       <input type="submit" class="btn btn-success hover" value="Ajouter">
     <% end %>
+    <br>
+    <br>
+    <% flash.each do |key, value| %>
+      <span class="flash <%= key %> alert alert-danger"><%= value %></span>
+    <% end %>
   </div>
   </div>
   </body>

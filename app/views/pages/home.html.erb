@@ -43,11 +43,17 @@
         </div>
           <input class="btn btn-success hover" type="submit" value="Connexion">
         <% end %>
-        <%= flash[:info] %>
+        <br>
+        <br>
+        <% flash.each do |key, value| %>
+          <span class="flash <%= key %> alert alert-danger"><%= value %></span>
+        <% end %>
       </div>
-      <div class="col-md-7">
+      <div class="col-md-6 well text-left">
         <p>Si tu es etudiant et que tu n'as pas encore reçu d'invitation de ton professeur, clique <strong>ici</strong> (en vrai je ne sais pas quoi écrire donc voilà)!</p>
         <p>Ce gestionnaire de notes va vous faciliter la vie... blablabla à voir</p>
+      </div>
+      <div class="col-md-1">
       </div>
     </div>
     </div>

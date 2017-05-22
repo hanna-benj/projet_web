@@ -60,12 +60,15 @@ class PagesController < ApplicationController
           if @eleve
             session[:id_studient]=@eleve.id
             redirect_to '/pages/eleve'
+          else
+            flash[:error] = "Vous n'êtes pas inscrit ou l'administrateur n'a pas accepté votre compte."
+            redirect_to '/pages/home'
           end
-          flash[:info] = "Vous n'êtes pas inscrit ou l'administrateur n'a pas accepté votre compte."
         end
       end
     else
-      flash[:info] = "incorrect"
+      flash[:error] = "incorrect"
+      redirect_to '/pages/home'
     end
   end
 
@@ -83,7 +86,7 @@ class PagesController < ApplicationController
         flash[:info] = "Votre demande a bien été prise en compte"
         redirect_to '/pages/home'
       else
-        flash[:info] = "Les étudients n'ont pas le droit de s'inscrire"
+        flash[:info] = "Les étudiants n'ont pas le droit de s'inscrire"
         redirect_to '/pages/home'
       end
     else
@@ -157,10 +160,22 @@ class PagesController < ApplicationController
   end
 
   def ajoutnote
-    if ((params[:nom] != '') && (params[:prenom] != '' && (params[:note] != ''))) then
+    if ((params[:nom] != '') && (params[:prenom] != '') && (params[:note] != '')) then
       @eleve = Studient.where(surname: params[:nom], name: params[:prenom]).first
       if @eleve then
-        Mark.create(mark: params[:note], exam_id: params[:exam], studient_id: @eleve.id, teacher_id: params[:prof])
+        @note = Mark.where(exam_id: params[:exam])
+        compteur = 0
+        @note.each do |note_eleve|
+          if note_eleve.studient_id == @eleve.id
+            compteur +=1
+          end
+        end
+        if compteur == 0
+          Mark.create(mark: params[:note], exam_id: params[:exam], studient_id: @eleve.id, teacher_id: params[:prof])
+        else
+          flash[:info] = "L'élève a déjà une note pour cet examen."
+        end
+        redirect_to '/pages/note'
       else
         redirect_to '/pages/examprof'
       end
@@ -188,6 +203,8 @@ class PagesController < ApplicationController
       @nveleve = Studient.where(surname: 'test').first
       ApplicationMailer.sample_email(@nveleve).deliver
     end
+    flash[:info] = "L'invitation a bien été envoyé"
+    redirect_to '/pages/inviteleve'
   end
 
 end
