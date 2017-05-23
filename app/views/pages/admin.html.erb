@@ -31,7 +31,7 @@
     </div>
 <div class="col-md-12 text-center">
 <%@teacher_attente.each do |prof_attente| %>
-<p class="lead"><span class="alert alert-info"><strong><%= prof_attente.surname %> <%= prof_attente.name %> <%= prof_attente.email %></strong></span></p>
+<p class="lead"><span class="label label-info"><strong><%= prof_attente.surname %> <%= prof_attente.name %> <%= prof_attente.email %></strong></span></p>
 <div class="col-md-6 text-right">
 <%= form_tag "/pages/admin", method: :post do %>
   <input type="hidden" name="id" value="<%= prof_attente.id %>">

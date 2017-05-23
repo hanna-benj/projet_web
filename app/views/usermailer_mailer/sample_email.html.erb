@@ -1,8 +1,11 @@
-<p> Bonjour <% @user.name %> <p>
+<h5> Bonjour <% @user.name %> <h5>
   <br />
-<p>Un professeur vous a invité un consulter vos notes sur le site de gestionaire de note. Pour vous connecter renseignez: </p>
-<p> Votre nom </p>
-<p> Votre adresse email </p>
-<p> et le mot de passe suivant <%= @user.password %></p>
-<br />
-<p> À très bientôt sur le gestionaire de notes</p>
+<p>Un professeur vous a invité à consulter vos notes sur le site de gestionnaire de notes. Pour vous connecter renseignez: </p>
+<ul>
+  <li> Votre nom </li>
+  <li> Votre adresse email </li>
+  <li> et le mot de passe suivant <%= @user.password %></li>
+</ul>
+<br/>
+<p> À très bientôt sur le gestionnaire de notes !</p>
+<footer>De l'administration</footer>

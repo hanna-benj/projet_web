@@ -200,21 +200,9 @@ class PagesController < ApplicationController
       end
       @nveleve = Studient.create(surname: params[:nom], name: params[:prenom], email: params[:email], password: password)
       UsermailerMailer.sample_email(@nveleve).deliver
-      redirect_to '/pages/prof'
+      redirect_to '/pages/inviteleve'
     end
     flash[:info] = "L'invitation a bien été envoyé"
-    redirect_to '/pages/inviteleve'
-  end
-
-  def modifiermdp
-    @eleve = Studient.find(params[:eleve])
-    if (params[:mdp1] != '') && (params[:mdp2] != '') && (params[:mdp3] != '')
-      if params[:mpd1] == @eleve.password
-        if params[:mdp2] == params[:mdp3]
-          @eleve.update(password: params[:mdp3])
-        end
-      end
-    end
   end
 
 end
