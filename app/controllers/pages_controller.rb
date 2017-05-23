@@ -94,8 +94,8 @@ class PagesController < ApplicationController
           flash[:info] = "Votre demande a bien été prise en compte"
           redirect_to '/pages/home'
         else
-          flash[:info] = "Vous vous êtes déjà inscrit. Si vous n'arrivez pas à vous connecter attendez la confirmation de votre inscription par l'administrateur"
-          redirect_to '/pages/home'
+          flash[:info] = "Vous vous êtes déjà inscrit. Si vous n'arrivez pas à vous connecter attendez la confirmation de votre inscription par l'administrateur."
+          redirect_to '/pages/inscription'
         end
       else
         flash[:info] = "Les étudiants n'ont pas le droit de s'inscrire"

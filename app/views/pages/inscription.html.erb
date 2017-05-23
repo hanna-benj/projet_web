@@ -42,7 +42,10 @@
 </div>
   <input type="submit" class="btn btn-success hover" value="S'inscrire">
 <% end %>
-<%= flash[:info] %>
+<br><br>
+<% flash.each do |key, value| %>
+  <span class="flash <%= key %> alert alert-danger"><%= value %></span>
+<% end %>
 </div>
 </div>
 </body>
