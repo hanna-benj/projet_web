@@ -82,9 +82,21 @@ class PagesController < ApplicationController
         end
       end
       if compteur == 0
-        Teacher.create(surname: params[:nom], name: params[:prenom], email: params[:email], password: params[:password], role: "attente")
-        flash[:info] = "Votre demande a bien été prise en compte"
-        redirect_to '/pages/home'
+        @prof = Teacher.all
+        plus = 0
+        @prof.each do |mailp|
+          if params[:email] == mailp.email
+            plus += 1
+          end
+        end
+        if plus == 0
+          Teacher.create(surname: params[:nom], name: params[:prenom], email: params[:email], password: params[:password], role: "attente")
+          flash[:info] = "Votre demande a bien été prise en compte"
+          redirect_to '/pages/home'
+        else
+          flash[:info] = "Vous vous êtes déjà inscrit. Si vous n'arrivez pas à vous connecter attendez la confirmation de votre inscription par l'administrateur"
+          redirect_to '/pages/home'
+        end
       else
         flash[:info] = "Les étudiants n'ont pas le droit de s'inscrire"
         redirect_to '/pages/home'
