@@ -206,4 +206,15 @@ class PagesController < ApplicationController
     redirect_to '/pages/inviteleve'
   end
 
+  def modifiermdp
+    @eleve = Studient.find(params[:eleve])
+    if (params[:mdp1] != '') && (params[:mdp2] != '') && (params[:mdp3] != '')
+      if params[:mpd1] == @eleve.password
+        if params[:mdp2] == params[:mdp3]
+          @eleve.update(password: params[:mdp3])
+        end
+      end
+    end
+  end
+
 end
