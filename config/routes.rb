@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   post 'pages/examprof' => 'pages#voirnote'
   post 'pages/note' => 'pages#ajoutnote'
   post 'pages/inviteleve' => 'pages#inviter'
+  post 'pages/eleve' => 'pages#modifiermdp'
 
   delete 'pages/admin' => 'pages#refuser'
   root 'page#connexion'

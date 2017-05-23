@@ -4,6 +4,6 @@ class UsermailerMailer < ApplicationMailer
 
   def sample_email(eleve)
     @user = eleve
-    mail(:to => @user.email, :subject => 'Sample Email')
+    mail(:to => @user.email, :subject => 'Gestionnaire de notes')
   end
 end
