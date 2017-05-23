@@ -105,6 +105,35 @@ class PagesController < ApplicationController
     redirect_to '/pages/admin'
   end
 
+  def suppnote
+    Mark.find(params[:note]).destroy
+    redirect_to '/pages/note'
+  end
+
+  def suppepp
+    @ep = Exam.find(params[:ep])
+    @note = Mark.where(exam_id: @ep.id)
+    @note.each do |sup|
+      Mark.find(sup.id).destroy
+    end
+    Exam.find(params[:ep]).destroy
+    redirect_to '/pages/examprof'
+  end
+
+  def suppmat
+    @mat = Subject.find(params[:mat])
+    @ep = Exam.where(subject_id: @mat.id)
+    @ep.each do |supep|
+      @note = Mark.where(exam_id: supep.id)
+      @note.each do |supnote|
+        Mark.find(supnote.id).destroy
+      end
+      Exam.find(supep.id).destroy
+    end
+    Subject.find(params[:mat]).destroy
+    redirect_to '/pages/prof'
+  end
+
   def set_current_teacher
     if session[:id_teacher]
       @current_teacher = Teacher.find(session[:id_teacher])
@@ -204,17 +233,6 @@ class PagesController < ApplicationController
     end
     flash[:info] = "L'invitation a bien été envoyé"
     redirect_to '/pages/inviteleve'
-  end
-
-  def modifiermdp
-    @eleve = Studient.find(params[:eleve])
-    if (params[:mdp1] != '') && (params[:mdp2] != '') && (params[:mdp3] != '')
-      if params[:mpd1] == @eleve.password
-        if params[:mdp2] == params[:mdp3]
-          @eleve.update(password: params[:mdp3])
-        end
-      end
-    end
   end
 
 end

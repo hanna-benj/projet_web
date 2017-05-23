@@ -19,9 +19,11 @@ Rails.application.routes.draw do
   post 'pages/examprof' => 'pages#voirnote'
   post 'pages/note' => 'pages#ajoutnote'
   post 'pages/inviteleve' => 'pages#inviter'
-  post 'pages/eleve' => 'pages#modifiermdp'
 
   delete 'pages/admin' => 'pages#refuser'
+  delete 'pages/note' => 'pages#suppnote'
+  delete 'pages/examprof' => 'pages#suppepp'
+  delete 'pages/prof' => 'pages#suppmat'
   root 'page#connexion'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

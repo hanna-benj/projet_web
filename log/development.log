@@ -20784,3 +20784,1529 @@ Processing by PagesController#home as HTML
 Completed 200 OK in 28ms (Views: 26.9ms | ActiveRecord: 0.0ms)
 
 
+Started POST "/pages/home" for 127.0.0.1 at 2017-05-23 14:31:02 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by PagesController#connexion as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"g8gZMekznedRuZHoPFEuQDx6Wvs94pUopnl21ukbCQecfNB8E3A3E+g3EgiM1s2uoXPBLMmS9uFZbsPqZhRXRw==", "nom"=>"d", "email"=>"d@d", "password"=>"[FILTERED]"}
+  [1m[36mAdministrateur Load (0.3ms)[0m  [1m[34mSELECT  "administrateurs".* FROM "administrateurs" WHERE "administrateurs"."nom" = $1 AND "administrateurs"."email" = $2 AND "administrateurs"."password" = $3 ORDER BY "administrateurs"."id" ASC LIMIT $4[0m  [["nom", "d"], ["email", "d@d"], ["password", "d"], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."surname" = $1 AND "teachers"."email" = $2 AND "teachers"."password" = $3 AND "teachers"."role" = $4 ORDER BY "teachers"."id" ASC LIMIT $5[0m  [["surname", "d"], ["email", "d@d"], ["password", "d"], ["role", "accepte"], ["LIMIT", 1]]
+  [1m[36mStudient Load (0.2ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."surname" = $1 AND "studients"."email" = $2 AND "studients"."password" = $3 ORDER BY "studients"."id" ASC LIMIT $4[0m  [["surname", "d"], ["email", "d@d"], ["password", "d"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/prof
+Completed 302 Found in 37ms (ActiveRecord: 7.7ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-23 14:31:03 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.5ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (9.9ms)
+Completed 200 OK in 208ms (Views: 197.7ms | ActiveRecord: 3.3ms)
+
+
+Started POST "/pages/prof" for 127.0.0.1 at 2017-05-23 14:31:09 +0200
+Processing by PagesController#examen as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"1ZrhaxHnZSQMirSmSSslRvTRAYeVHWvlaLOy56jYMGA3XAYkmMiK54l2E8yf1CiaPHFrqFWSwfmG8zDxIG/aCQ==", "id_mat"=>"1"}
+  [1m[36mSubject Load (1.0ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 ORDER BY "subjects"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/examprof
+Completed 302 Found in 3ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/pages/examprof" for 127.0.0.1 at 2017-05-23 14:31:09 +0200
+Processing by PagesController#examprof as HTML
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/examprof.html.erb within layouts/application
+  [1m[36mExam Load (0.8ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 1]]
+  Rendered pages/examprof.html.erb within layouts/application (9.0ms)
+Completed 200 OK in 35ms (Views: 24.9ms | ActiveRecord: 5.4ms)
+
+
+Started POST "/pages/examprof" for 127.0.0.1 at 2017-05-23 14:31:10 +0200
+Processing by PagesController#voirnote as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"nKF7NS+qz1ZLP/z64BiepOOeAmYvqY27yo60BX24d2h+Z5x6poUglc7DW5A255N4Kz5oSe8mJ6ckzjYT9Q+dAQ==", "id_epreuve"=>"1"}
+  [1m[36mExam Load (0.9ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 ORDER BY "exams"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/note
+Completed 302 Found in 3ms (ActiveRecord: 0.9ms)
+
+
+Started GET "/pages/note" for 127.0.0.1 at 2017-05-23 14:31:10 +0200
+Processing by PagesController#note as HTML
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/note.html.erb within layouts/application
+  [1m[36mMark Load (0.5ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 1]]
+  [1m[36mStudient Load (0.6ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered pages/note.html.erb within layouts/application (216.6ms)
+Completed 500 Internal Server Error in 227ms (ActiveRecord: 6.5ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `note' for #<#<Class:0x005644526a0ad0>:0x007f4a040eac40>
+Did you mean?  notes):
+    47:             <td> <%= notes.mark %> </td>
+    48:             <td>
+    49:               <%= form_tag "/pages/note", method: :delete do %>
+    50:                 <input type="hidden" name="note" value="<%= note.id %>">
+    51:                 <input type="submit" class="btn btn-primary hover" value="Supprimer">
+    52:               <% end %>
+    53:             </td>
+  
+app/views/pages/note.html.erb:50:in `block (2 levels) in _app_views_pages_note_html_erb__1534021387798138324_69977936190460'
+app/views/pages/note.html.erb:49:in `block in _app_views_pages_note_html_erb__1534021387798138324_69977936190460'
+app/views/pages/note.html.erb:41:in `_app_views_pages_note_html_erb__1534021387798138324_69977936190460'
+  Rendering /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (8.8ms)
+  Rendering /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.1ms)
+  Rendering /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (52.0ms)
+Started POST "/pages/examprof" for 127.0.0.1 at 2017-05-23 14:31:43 +0200
+Processing by PagesController#voirnote as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"nKF7NS+qz1ZLP/z64BiepOOeAmYvqY27yo60BX24d2h+Z5x6poUglc7DW5A255N4Kz5oSe8mJ6ckzjYT9Q+dAQ==", "id_epreuve"=>"1"}
+  [1m[36mExam Load (0.5ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 ORDER BY "exams"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/note
+Completed 302 Found in 2ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/pages/note" for 127.0.0.1 at 2017-05-23 14:31:43 +0200
+Processing by PagesController#note as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/note.html.erb within layouts/application
+  [1m[36mMark Load (0.5ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 1]]
+  [1m[36mStudient Load (0.4ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mStudient Load (0.7ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendered pages/note.html.erb within layouts/application (7.3ms)
+Completed 200 OK in 47ms (Views: 41.9ms | ActiveRecord: 2.3ms)
+
+
+Started DELETE "/pages/note" for 127.0.0.1 at 2017-05-23 14:31:48 +0200
+Processing by PagesController#note as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"msMNo6GXR4ncI9JMSslIgGlYVpmq603YqcZsTekQXhp4BersKLioSlnfdSacNkVcofg8tmpk58RHhu5bYae0cw==", "note"=>"1"}
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/note.html.erb within layouts/application
+  [1m[36mMark Load (0.8ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 1]]
+  [1m[36mStudient Load (1.6ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mStudient Load (0.4ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendered pages/note.html.erb within layouts/application (11.6ms)
+Completed 200 OK in 45ms (Views: 36.9ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/pages/note" for 127.0.0.1 at 2017-05-23 14:31:50 +0200
+Processing by PagesController#note as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mExam Load (0.2ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/note.html.erb within layouts/application
+  [1m[36mMark Load (0.5ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 1]]
+  [1m[36mStudient Load (0.4ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mStudient Load (0.4ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendered pages/note.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 34ms (Views: 27.4ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/pages/note" for 127.0.0.1 at 2017-05-23 14:31:56 +0200
+Processing by PagesController#note as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/note.html.erb within layouts/application
+  [1m[36mMark Load (0.5ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 1]]
+  [1m[36mStudient Load (0.4ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mStudient Load (0.4ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendered pages/note.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 39ms (Views: 33.2ms | ActiveRecord: 2.1ms)
+
+
+Started DELETE "/pages/note" for 127.0.0.1 at 2017-05-23 14:32:00 +0200
+Processing by PagesController#note as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"nTMc6UOdgSPHA3Vh7g2Bkj/iLqk+ZdaYmBqv/LFz/4B/9fumyrJu4EL/0gs48oxO90JEhv7qfIR2Wi3qOcQV6Q==", "note"=>"1"}
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/note.html.erb within layouts/application
+  [1m[36mMark Load (0.4ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 1]]
+  [1m[36mStudient Load (0.5ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mStudient Load (0.4ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendered pages/note.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 30ms (Views: 24.0ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/pages/note" for 127.0.0.1 at 2017-05-23 14:32:03 +0200
+Processing by PagesController#note as HTML
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/note.html.erb within layouts/application
+  [1m[36mMark Load (0.4ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 1]]
+  [1m[36mStudient Load (0.4ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mStudient Load (0.3ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendered pages/note.html.erb within layouts/application (5.7ms)
+Completed 200 OK in 33ms (Views: 24.9ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/pages/note" for 127.0.0.1 at 2017-05-23 14:34:52 +0200
+Processing by PagesController#note as HTML
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/note.html.erb within layouts/application
+  [1m[36mMark Load (0.7ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 1]]
+  [1m[36mStudient Load (0.4ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mStudient Load (0.4ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendered pages/note.html.erb within layouts/application (19.9ms)
+Completed 200 OK in 69ms (Views: 34.9ms | ActiveRecord: 7.3ms)
+
+
+Started DELETE "/pages/note" for 127.0.0.1 at 2017-05-23 14:34:54 +0200
+Processing by PagesController#suppnote as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"qU8HdgCVLdMd6KewwCTA45iezbRYi6te7am+groT1uBLieA5ibrCEJgUANoW280/UD6nm5gEAUID6TyUMqQ8iQ==", "note"=>"1"}
+  [1m[36mMark Load (0.4ms)[0m  [1m[34mSELECT  "marks".* FROM "marks" WHERE "marks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM "marks" WHERE "marks"."id" = $1[0m  [["id", 1]]
+  [1m[35m (46.0ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000pages/note
+Completed 302 Found in 51ms (ActiveRecord: 46.9ms)
+
+
+Started DELETE "/pages/note" for 127.0.0.1 at 2017-05-23 14:35:01 +0200
+Processing by PagesController#suppnote as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"qU8HdgCVLdMd6KewwCTA45iezbRYi6te7am+groT1uBLieA5ibrCEJgUANoW280/UD6nm5gEAUID6TyUMqQ8iQ==", "note"=>"1"}
+  [1m[36mMark Load (0.3ms)[0m  [1m[34mSELECT  "marks".* FROM "marks" WHERE "marks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 404 Not Found in 2ms (ActiveRecord: 0.3ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Mark with 'id'=1):
+  
+app/controllers/pages_controller.rb:109:in `suppnote'
+  Rendering /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (2.7ms)
+  Rendering /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendering /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (22.7ms)
+Started POST "/pages/note" for 127.0.0.1 at 2017-05-23 14:35:58 +0200
+Processing by PagesController#ajoutnote as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"qU8HdgCVLdMd6KewwCTA45iezbRYi6te7am+groT1uBLieA5ibrCEJgUANoW280/UD6nm5gEAUID6TyUMqQ8iQ==", "nom"=>"test", "prenom"=>"test", "note"=>"14", "prof"=>"1", "exam"=>"1"}
+  [1m[36mStudient Load (1.3ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."surname" = $1 AND "studients"."name" = $2 ORDER BY "studients"."id" ASC LIMIT $3[0m  [["surname", "test"], ["name", "test"], ["LIMIT", 1]]
+  [1m[36mMark Load (0.5ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (44.7ms)[0m  [1m[32mINSERT INTO "marks" ("mark", "exam_id", "studient_id", "teacher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["mark", 14.0], ["exam_id", 1], ["studient_id", 5], ["teacher_id", 1], ["created_at", 2017-05-23 12:35:58 UTC], ["updated_at", 2017-05-23 12:35:58 UTC]]
+  [1m[35m (99.1ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/pages/note
+Completed 302 Found in 154ms (ActiveRecord: 145.8ms)
+
+
+Started GET "/pages/note" for 127.0.0.1 at 2017-05-23 14:35:58 +0200
+Processing by PagesController#note as HTML
+  [1m[36mTeacher Load (0.9ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.8ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mExam Load (0.8ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/note.html.erb within layouts/application
+  [1m[36mMark Load (0.7ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 1]]
+  [1m[36mStudient Load (0.4ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mStudient Load (0.4ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered pages/note.html.erb within layouts/application (8.2ms)
+Completed 200 OK in 45ms (Views: 30.8ms | ActiveRecord: 4.0ms)
+
+
+Started DELETE "/pages/note" for 127.0.0.1 at 2017-05-23 14:36:07 +0200
+Processing by PagesController#suppnote as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"UJebbOdwXwXcC9Gv4IHB48B2NUBMGsLLtvgvrUTnYy2yUXwjbl+wxln3dsU2fsw/CNZfb4yVaNdYuK27zFCJRA==", "note"=>"9"}
+  [1m[36mMark Load (0.2ms)[0m  [1m[34mSELECT  "marks".* FROM "marks" WHERE "marks"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "marks" WHERE "marks"."id" = $1[0m  [["id", 9]]
+  [1m[35m (42.1ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000pages/note
+Completed 302 Found in 46ms (ActiveRecord: 42.7ms)
+
+
+Started DELETE "/pages/note" for 127.0.0.1 at 2017-05-23 14:36:10 +0200
+Processing by PagesController#suppnote as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"UJebbOdwXwXcC9Gv4IHB48B2NUBMGsLLtvgvrUTnYy2yUXwjbl+wxln3dsU2fsw/CNZfb4yVaNdYuK27zFCJRA==", "note"=>"9"}
+  [1m[36mMark Load (0.5ms)[0m  [1m[34mSELECT  "marks".* FROM "marks" WHERE "marks"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+Completed 404 Not Found in 3ms (ActiveRecord: 0.5ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Mark with 'id'=9):
+  
+app/controllers/pages_controller.rb:109:in `suppnote'
+  Rendering /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (2.7ms)
+  Rendering /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.8ms)
+  Rendering /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (35.7ms)
+Started GET "/pages/note" for 127.0.0.1 at 2017-05-23 14:36:15 +0200
+Processing by PagesController#note as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/note.html.erb within layouts/application
+  [1m[36mMark Load (0.4ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 1]]
+  [1m[36mStudient Load (0.3ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendered pages/note.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 31ms (Views: 26.2ms | ActiveRecord: 1.5ms)
+
+
+Started DELETE "/pages/note" for 127.0.0.1 at 2017-05-23 14:36:30 +0200
+Processing by PagesController#suppnote as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"864c3/E7MiLpCwdliQvKecW6ssTsyJvAW3G9apS1VUQRaPuQeBTd4Wz3oA9f9MelDRrY6yxHMdy1MT98HAK/LQ==", "note"=>"6"}
+  [1m[36mMark Load (0.2ms)[0m  [1m[34mSELECT  "marks".* FROM "marks" WHERE "marks"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "marks" WHERE "marks"."id" = $1[0m  [["id", 6]]
+  [1m[35m (48.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000pages/note
+Completed 302 Found in 52ms (ActiveRecord: 48.7ms)
+
+
+Started DELETE "/pages/note" for 127.0.0.1 at 2017-05-23 14:36:36 +0200
+Processing by PagesController#suppnote as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"864c3/E7MiLpCwdliQvKecW6ssTsyJvAW3G9apS1VUQRaPuQeBTd4Wz3oA9f9MelDRrY6yxHMdy1MT98HAK/LQ==", "note"=>"6"}
+  [1m[36mMark Load (0.7ms)[0m  [1m[34mSELECT  "marks".* FROM "marks" WHERE "marks"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+Completed 404 Not Found in 3ms (ActiveRecord: 0.7ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Mark with 'id'=6):
+  
+app/controllers/pages_controller.rb:109:in `suppnote'
+  Rendering /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (2.7ms)
+  Rendering /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendering /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (23.7ms)
+Started GET "/pages/note" for 127.0.0.1 at 2017-05-23 14:36:50 +0200
+Processing by PagesController#note as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mExam Load (0.2ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/note.html.erb within layouts/application
+  [1m[36mMark Load (0.3ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 1]]
+  Rendered pages/note.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 21ms (Views: 17.2ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/pages/note" for 127.0.0.1 at 2017-05-23 14:36:59 +0200
+Processing by PagesController#ajoutnote as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"YFMtL4TiiwfIKfGJzNhSmCDMMl1RG2mXmLfdcfkTcXGClcpgDc1kxE3VVuMaJ19E6GxYcpGUw4t2919ncaSbGA==", "nom"=>"y", "prenom"=>"y", "note"=>"15", "prof"=>"1", "exam"=>"1"}
+  [1m[36mStudient Load (0.6ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."surname" = $1 AND "studients"."name" = $2 ORDER BY "studients"."id" ASC LIMIT $3[0m  [["surname", "y"], ["name", "y"], ["LIMIT", 1]]
+  [1m[36mMark Load (0.3ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "marks" ("mark", "exam_id", "studient_id", "teacher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["mark", 15.0], ["exam_id", 1], ["studient_id", 4], ["teacher_id", 1], ["created_at", 2017-05-23 12:36:59 UTC], ["updated_at", 2017-05-23 12:36:59 UTC]]
+  [1m[35m (83.7ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/pages/note
+Completed 302 Found in 90ms (ActiveRecord: 85.2ms)
+
+
+Started GET "/pages/note" for 127.0.0.1 at 2017-05-23 14:36:59 +0200
+Processing by PagesController#note as HTML
+  [1m[36mTeacher Load (0.9ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.7ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mExam Load (0.7ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/note.html.erb within layouts/application
+  [1m[36mMark Load (0.7ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 1]]
+  [1m[36mStudient Load (0.5ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendered pages/note.html.erb within layouts/application (7.1ms)
+Completed 200 OK in 39ms (Views: 25.7ms | ActiveRecord: 3.5ms)
+
+
+Started DELETE "/pages/note" for 127.0.0.1 at 2017-05-23 14:37:37 +0200
+Processing by PagesController#suppnote as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8e14yiM83S5FUBVa+AoIxoQajQYQzBTCdafPB9fC6KATK5+FqhMy7cCssjAu9QUaTLrnKdBDvt6b500RX3UCyQ==", "note"=>"10"}
+  [1m[36mMark Load (0.4ms)[0m  [1m[34mSELECT  "marks".* FROM "marks" WHERE "marks"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "marks" WHERE "marks"."id" = $1[0m  [["id", 10]]
+  [1m[35m (42.8ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/pages/note
+Completed 302 Found in 55ms (ActiveRecord: 43.7ms)
+
+
+Started GET "/pages/note" for 127.0.0.1 at 2017-05-23 14:37:37 +0200
+Processing by PagesController#note as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mExam Load (0.2ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/note.html.erb within layouts/application
+  [1m[36mMark Load (0.3ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 1]]
+  Rendered pages/note.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 65ms (Views: 17.6ms | ActiveRecord: 18.2ms)
+
+
+Started POST "/pages/note" for 127.0.0.1 at 2017-05-23 14:37:51 +0200
+Processing by PagesController#ajoutnote as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"NrV54Bpq7NPkTZKucWtJxha2cH5194LFUu1DAMmMmVzUc56vk0UDEGGxNcSnlEQa3hYaUbV4KNm8rcEWQTtzNQ==", "nom"=>"y", "prenom"=>"y", "note"=>"14", "prof"=>"1", "exam"=>"1"}
+  [1m[36mStudient Load (1.1ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."surname" = $1 AND "studients"."name" = $2 ORDER BY "studients"."id" ASC LIMIT $3[0m  [["surname", "y"], ["name", "y"], ["LIMIT", 1]]
+  [1m[36mMark Load (0.3ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "marks" ("mark", "exam_id", "studient_id", "teacher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["mark", 14.0], ["exam_id", 1], ["studient_id", 4], ["teacher_id", 1], ["created_at", 2017-05-23 12:37:51 UTC], ["updated_at", 2017-05-23 12:37:51 UTC]]
+  [1m[35m (85.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/pages/note
+Completed 302 Found in 106ms (ActiveRecord: 91.3ms)
+
+
+Started GET "/pages/note" for 127.0.0.1 at 2017-05-23 14:37:51 +0200
+Processing by PagesController#note as HTML
+  [1m[36mTeacher Load (0.8ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.5ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mExam Load (0.5ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/note.html.erb within layouts/application
+  [1m[36mMark Load (0.6ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 1]]
+  [1m[36mStudient Load (0.6ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendered pages/note.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 35ms (Views: 25.8ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/pages/examprof" for 127.0.0.1 at 2017-05-23 14:37:55 +0200
+Processing by PagesController#examprof as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/examprof.html.erb within layouts/application
+  [1m[36mExam Load (0.4ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 1]]
+  Rendered pages/examprof.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 36ms (Views: 32.5ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/pages/examprof" for 127.0.0.1 at 2017-05-23 14:37:57 +0200
+Processing by PagesController#voirnote as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"K6Av46SGhZSS63hParhzy3aQaKEI68pjxJ8UK9b1EKmOi7rwKJAzzPPF3+i6PDA57oH4lNaKEVUg5JWXO4qOsw==", "id_epreuve"=>"5"}
+  [1m[36mExam Load (0.4ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 ORDER BY "exams"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/note
+Completed 302 Found in 2ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/note" for 127.0.0.1 at 2017-05-23 14:37:57 +0200
+Processing by PagesController#note as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering pages/note.html.erb within layouts/application
+  [1m[36mMark Load (0.4ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 5]]
+  [1m[36mStudient Load (0.7ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered pages/note.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 23ms (Views: 18.4ms | ActiveRecord: 1.9ms)
+
+
+Started POST "/pages/note" for 127.0.0.1 at 2017-05-23 14:38:05 +0200
+Processing by PagesController#ajoutnote as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"pQJuuiiNoASqf09zNVBs6ToiO/RnNMRAKfKQZ4F9xHVHxIn1oaJPxy+D6Bnjr2E18oJR26e7blzHshJxCcouHA==", "nom"=>"y", "prenom"=>"y", "note"=>"9", "prof"=>"1", "exam"=>"5"}
+  [1m[36mStudient Load (0.4ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."surname" = $1 AND "studients"."name" = $2 ORDER BY "studients"."id" ASC LIMIT $3[0m  [["surname", "y"], ["name", "y"], ["LIMIT", 1]]
+  [1m[36mMark Load (0.4ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 5]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "marks" ("mark", "exam_id", "studient_id", "teacher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["mark", 9.0], ["exam_id", 5], ["studient_id", 4], ["teacher_id", 1], ["created_at", 2017-05-23 12:38:05 UTC], ["updated_at", 2017-05-23 12:38:05 UTC]]
+  [1m[35m (45.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/pages/note
+Completed 302 Found in 51ms (ActiveRecord: 46.6ms)
+
+
+Started GET "/pages/note" for 127.0.0.1 at 2017-05-23 14:38:05 +0200
+Processing by PagesController#note as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mExam Load (0.2ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering pages/note.html.erb within layouts/application
+  [1m[36mMark Load (0.9ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 5]]
+  [1m[36mStudient Load (0.4ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mStudient Load (0.3ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendered pages/note.html.erb within layouts/application (5.7ms)
+Completed 200 OK in 34ms (Views: 28.9ms | ActiveRecord: 2.3ms)
+
+
+Started DELETE "/pages/note" for 127.0.0.1 at 2017-05-23 14:38:06 +0200
+Processing by PagesController#suppnote as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"UbLlvoGFaW7kD441OuNaKYyxPaemASkBVVIcWa7z71izdALxCKqGrWHzKV/sHFf1RBFXiGaOgx27Ep5PJkQFMQ==", "note"=>"12"}
+  [1m[36mMark Load (0.3ms)[0m  [1m[34mSELECT  "marks".* FROM "marks" WHERE "marks"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM "marks" WHERE "marks"."id" = $1[0m  [["id", 12]]
+  [1m[35m (15.9ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/pages/note
+Completed 302 Found in 19ms (ActiveRecord: 16.7ms)
+
+
+Started GET "/pages/note" for 127.0.0.1 at 2017-05-23 14:38:06 +0200
+Processing by PagesController#note as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mExam Load (0.2ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering pages/note.html.erb within layouts/application
+  [1m[36mMark Load (0.5ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 5]]
+  [1m[36mStudient Load (0.4ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered pages/note.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 23ms (Views: 18.8ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-23 14:38:10 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 21ms (Views: 20.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/pages/home" for 127.0.0.1 at 2017-05-23 14:38:19 +0200
+Processing by PagesController#connexion as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"VQj02JgG3Wic2YHk2+A1leh5Rl68G9AtyLucSrMIz+lKvD2VYkV3nCVXAgRrZ9Z7dXDdiUhrs+Q3rCl2PAeRqQ==", "nom"=>"d", "email"=>"d@d", "password"=>"[FILTERED]"}
+  [1m[36mAdministrateur Load (0.4ms)[0m  [1m[34mSELECT  "administrateurs".* FROM "administrateurs" WHERE "administrateurs"."nom" = $1 AND "administrateurs"."email" = $2 AND "administrateurs"."password" = $3 ORDER BY "administrateurs"."id" ASC LIMIT $4[0m  [["nom", "d"], ["email", "d@d"], ["password", "d"], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."surname" = $1 AND "teachers"."email" = $2 AND "teachers"."password" = $3 AND "teachers"."role" = $4 ORDER BY "teachers"."id" ASC LIMIT $5[0m  [["surname", "d"], ["email", "d@d"], ["password", "d"], ["role", "accepte"], ["LIMIT", 1]]
+  [1m[36mStudient Load (0.4ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."surname" = $1 AND "studients"."email" = $2 AND "studients"."password" = $3 ORDER BY "studients"."id" ASC LIMIT $4[0m  [["surname", "d"], ["email", "d@d"], ["password", "d"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/prof
+Completed 302 Found in 9ms (ActiveRecord: 3.3ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-23 14:38:19 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 27ms (Views: 24.0ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/pages/prof" for 127.0.0.1 at 2017-05-23 14:38:32 +0200
+Processing by PagesController#examen as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ZUiGTqKWkN9V0iSji3L5bhxMTdej77KZ/LZXx0GB35uHjmEBK7l/HNAug8ldjfSy1Own+GNgGIUS9tXRyTY18g==", "id_mat"=>"1"}
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 ORDER BY "subjects"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/examprof
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/pages/examprof" for 127.0.0.1 at 2017-05-23 14:38:32 +0200
+Processing by PagesController#examprof as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/examprof.html.erb within layouts/application
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 1]]
+  Rendered pages/examprof.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 25ms (Views: 22.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-23 14:41:18 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 20ms (Views: 18.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/pages/home" for 127.0.0.1 at 2017-05-23 14:41:33 +0200
+Processing by PagesController#connexion as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"FMCwoGr+IaCEvGFhL1PoSfjzpUiKt2N4vjVPtDeI88ULdHntkL2LVD0y4oGf1AunZfo+n37HALFBIvqIuIethQ==", "nom"=>"test", "email"=>"hanna.benjedidia@gmail.com", "password"=>"[FILTERED]"}
+  [1m[36mAdministrateur Load (0.7ms)[0m  [1m[34mSELECT  "administrateurs".* FROM "administrateurs" WHERE "administrateurs"."nom" = $1 AND "administrateurs"."email" = $2 AND "administrateurs"."password" = $3 ORDER BY "administrateurs"."id" ASC LIMIT $4[0m  [["nom", "test"], ["email", "hanna.benjedidia@gmail.com"], ["password", "OTVdoOLJ"], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."surname" = $1 AND "teachers"."email" = $2 AND "teachers"."password" = $3 AND "teachers"."role" = $4 ORDER BY "teachers"."id" ASC LIMIT $5[0m  [["surname", "test"], ["email", "hanna.benjedidia@gmail.com"], ["password", "OTVdoOLJ"], ["role", "accepte"], ["LIMIT", 1]]
+  [1m[36mStudient Load (0.4ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."surname" = $1 AND "studients"."email" = $2 AND "studients"."password" = $3 ORDER BY "studients"."id" ASC LIMIT $4[0m  [["surname", "test"], ["email", "hanna.benjedidia@gmail.com"], ["password", "OTVdoOLJ"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/eleve
+Completed 302 Found in 32ms (ActiveRecord: 9.8ms)
+
+
+Started GET "/pages/eleve" for 127.0.0.1 at 2017-05-23 14:41:33 +0200
+Processing by PagesController#eleve as HTML
+  [1m[36mStudient Load (0.3ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering pages/eleve.html.erb within layouts/application
+  [1m[36mMark Load (0.4ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."studient_id" = $1[0m  [["studient_id", 5]]
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 ORDER BY "exams"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.5ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 ORDER BY "subjects"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.6ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 ORDER BY "teachers"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered pages/eleve.html.erb within layouts/application (38.7ms)
+Completed 200 OK in 67ms (Views: 50.0ms | ActiveRecord: 10.1ms)
+
+
+Started GET "/pages/home" for 127.0.0.1 at 2017-05-23 14:41:38 +0200
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/home.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 19ms (Views: 17.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/pages/home" for 127.0.0.1 at 2017-05-23 14:41:44 +0200
+Processing by PagesController#connexion as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Kq/4Vkjon6JNrtzs69AqsCu+7febsIKK76pBW5fIC3A1GzEbsqs1VvQgXwxbV8letrd2IG/A4UMQvfRnGMdVMA==", "nom"=>"d", "email"=>"d@d", "password"=>"[FILTERED]"}
+  [1m[36mAdministrateur Load (0.5ms)[0m  [1m[34mSELECT  "administrateurs".* FROM "administrateurs" WHERE "administrateurs"."nom" = $1 AND "administrateurs"."email" = $2 AND "administrateurs"."password" = $3 ORDER BY "administrateurs"."id" ASC LIMIT $4[0m  [["nom", "d"], ["email", "d@d"], ["password", "d"], ["LIMIT", 1]]
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."surname" = $1 AND "teachers"."email" = $2 AND "teachers"."password" = $3 AND "teachers"."role" = $4 ORDER BY "teachers"."id" ASC LIMIT $5[0m  [["surname", "d"], ["email", "d@d"], ["password", "d"], ["role", "accepte"], ["LIMIT", 1]]
+  [1m[36mStudient Load (0.4ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."surname" = $1 AND "studients"."email" = $2 AND "studients"."password" = $3 ORDER BY "studients"."id" ASC LIMIT $4[0m  [["surname", "d"], ["email", "d@d"], ["password", "d"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/prof
+Completed 302 Found in 5ms (ActiveRecord: 1.2ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-23 14:41:44 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 23ms (Views: 18.9ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/pages/prof" for 127.0.0.1 at 2017-05-23 14:41:49 +0200
+Processing by PagesController#examen as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"w4LRTlqRDwnW2Nnj4p6ObuVorLjCkmNqSQHGJ2VIXcIhRDYB077gylMkfok0YYOyLcjGlwIdyXanQUQx7f+3qw==", "id_mat"=>"1"}
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 ORDER BY "subjects"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/examprof
+Completed 302 Found in 2ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/examprof" for 127.0.0.1 at 2017-05-23 14:41:49 +0200
+Processing by PagesController#examprof as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/examprof.html.erb within layouts/application
+  [1m[36mExam Load (0.4ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 1]]
+  Rendered pages/examprof.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 31ms (Views: 27.8ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/pages/examprof" for 127.0.0.1 at 2017-05-23 14:52:07 +0200
+Processing by PagesController#examprof as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/examprof.html.erb within layouts/application
+  [1m[36mExam Load (0.5ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 1]]
+  Rendered pages/examprof.html.erb within layouts/application (7.2ms)
+Completed 200 OK in 42ms (Views: 25.2ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/pages/examprof" for 127.0.0.1 at 2017-05-23 14:52:11 +0200
+Processing by PagesController#voirnote as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"QzRNG1Pcu3lmSITgX2xrl3qZO30CaE9FhnHJxMUNOlGh8qpU2vNUuuO0I4qJk2ZLsjlRUsLn5VloMUvSTbrQOA==", "id_epreuve"=>"5"}
+  [1m[36mExam Load (0.4ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 ORDER BY "exams"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/note
+Completed 302 Found in 2ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/note" for 127.0.0.1 at 2017-05-23 14:52:11 +0200
+Processing by PagesController#note as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mExam Load (0.2ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering pages/note.html.erb within layouts/application
+  [1m[36mMark Load (0.4ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 5]]
+  [1m[36mStudient Load (0.6ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered pages/note.html.erb within layouts/application (18.7ms)
+Completed 200 OK in 47ms (Views: 35.7ms | ActiveRecord: 6.7ms)
+
+
+Started GET "/pages/examprof" for 127.0.0.1 at 2017-05-23 14:52:14 +0200
+Processing by PagesController#examprof as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/examprof.html.erb within layouts/application
+  [1m[36mExam Load (0.5ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 1]]
+  Rendered pages/examprof.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 34ms (Views: 30.2ms | ActiveRecord: 1.0ms)
+
+
+Started DELETE "/pages/examprof" for 127.0.0.1 at 2017-05-23 14:52:15 +0200
+Processing by PagesController#suppepp as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EY8dx7xNx4j8y6d550Zo1yB7zWAL5fFUBW6sRjqHJWNV8MHH6Twx3nAyT7ZZgvn6hQC46uD0vtjk3kFrRlvqGw==", "ep"=>"5"}
+  [1m[36mExam Load (0.2ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mMark Load (0.3ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 5]]
+  [1m[36mMark Load (0.2ms)[0m  [1m[34mSELECT  "marks".* FROM "marks" WHERE "marks"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "marks" WHERE "marks"."id" = $1[0m  [["id", 8]]
+  [1m[35m (19.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/pages/examprof
+Completed 302 Found in 24ms (ActiveRecord: 20.7ms)
+
+
+Started GET "/pages/examprof" for 127.0.0.1 at 2017-05-23 14:52:15 +0200
+Processing by PagesController#examprof as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.1ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/examprof.html.erb within layouts/application
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 1]]
+  Rendered pages/examprof.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 24ms (Views: 21.7ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/pages/examprof" for 127.0.0.1 at 2017-05-23 14:52:17 +0200
+Processing by PagesController#voirnote as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"F5c5TRj48A3tJHivgNuGnUeQxbfms9dOuJvKamAwmqX1Ud4CkdcfzmjY38VWJItBjzCvmCY8fVJW20h86IdwzA==", "id_epreuve"=>"5"}
+  [1m[36mExam Load (0.4ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 ORDER BY "exams"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/note
+Completed 302 Found in 2ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/note" for 127.0.0.1 at 2017-05-23 14:52:17 +0200
+Processing by PagesController#note as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mExam Load (0.2ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering pages/note.html.erb within layouts/application
+  [1m[36mMark Load (0.4ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 5]]
+  Rendered pages/note.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 24ms (Views: 20.1ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/pages/examprof" for 127.0.0.1 at 2017-05-23 14:52:19 +0200
+Processing by PagesController#examprof as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/examprof.html.erb within layouts/application
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 1]]
+  Rendered pages/examprof.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 35ms (Views: 31.1ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/pages/examprof" for 127.0.0.1 at 2017-05-23 14:53:04 +0200
+Processing by PagesController#voirnote as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"wNR+qaFP0hf6OCBkbL/bGIk2ZAJaFMhDjhHI4/Zujwtl/+u6LVlkT5sWh8O8O5jqESf0N4R1E3VqaklfGxEREQ==", "id_epreuve"=>"5"}
+  [1m[36mExam Load (0.4ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 ORDER BY "exams"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/note
+Completed 302 Found in 8ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/note" for 127.0.0.1 at 2017-05-23 14:53:04 +0200
+Processing by PagesController#note as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering pages/note.html.erb within layouts/application
+  [1m[36mMark Load (0.4ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 5]]
+  Rendered pages/note.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 41ms (Views: 17.1ms | ActiveRecord: 8.3ms)
+
+
+Started POST "/pages/note" for 127.0.0.1 at 2017-05-23 14:53:11 +0200
+Processing by PagesController#ajoutnote as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SINmAEuY7bE9+eB9spsbWDl+IVNPxR8EIb+ry4CBCH2qRYFPwrcCcrgFRxdkZBaE8d5LfI9KtRjP/yndCDbiFA==", "nom"=>"y", "prenom"=>"y", "note"=>"12", "prof"=>"1", "exam"=>"5"}
+  [1m[36mStudient Load (0.6ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."surname" = $1 AND "studients"."name" = $2 ORDER BY "studients"."id" ASC LIMIT $3[0m  [["surname", "y"], ["name", "y"], ["LIMIT", 1]]
+  [1m[36mMark Load (0.5ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 5]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "marks" ("mark", "exam_id", "studient_id", "teacher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["mark", 12.0], ["exam_id", 5], ["studient_id", 4], ["teacher_id", 1], ["created_at", 2017-05-23 12:53:11 UTC], ["updated_at", 2017-05-23 12:53:11 UTC]]
+  [1m[35m (41.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/pages/note
+Completed 302 Found in 67ms (ActiveRecord: 43.1ms)
+
+
+Started GET "/pages/note" for 127.0.0.1 at 2017-05-23 14:53:11 +0200
+Processing by PagesController#note as HTML
+  [1m[36mTeacher Load (0.6ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.6ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mExam Load (0.6ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering pages/note.html.erb within layouts/application
+  [1m[36mMark Load (0.8ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 5]]
+  [1m[36mStudient Load (0.9ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendered pages/note.html.erb within layouts/application (8.7ms)
+Completed 200 OK in 43ms (Views: 33.0ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/pages/examprof" for 127.0.0.1 at 2017-05-23 14:53:13 +0200
+Processing by PagesController#examprof as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/examprof.html.erb within layouts/application
+  [1m[36mExam Load (0.4ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 1]]
+  Rendered pages/examprof.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 35ms (Views: 31.2ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/pages/examprof" for 127.0.0.1 at 2017-05-23 14:53:44 +0200
+Processing by PagesController#voirnote as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"kLDF/N1/KThcVSc7yEMBvEKFYzUYK95JoDLTdoPmPp01m1DvUWmfYD17gJwYx0JO2pTzAMZKBX9ESVLKbpmghw==", "id_epreuve"=>"5"}
+  [1m[36mExam Load (0.4ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 ORDER BY "exams"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/note
+Completed 302 Found in 2ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/note" for 127.0.0.1 at 2017-05-23 14:53:44 +0200
+Processing by PagesController#note as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mExam Load (0.2ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering pages/note.html.erb within layouts/application
+  [1m[36mMark Load (0.3ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 5]]
+  [1m[36mStudient Load (0.4ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendered pages/note.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 25ms (Views: 21.1ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/pages/examprof" for 127.0.0.1 at 2017-05-23 14:53:45 +0200
+Processing by PagesController#examprof as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/examprof.html.erb within layouts/application
+  [1m[36mExam Load (0.4ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 1]]
+  Rendered pages/examprof.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 22ms (Views: 18.7ms | ActiveRecord: 1.1ms)
+
+
+Started DELETE "/pages/examprof" for 127.0.0.1 at 2017-05-23 14:53:46 +0200
+Processing by PagesController#suppepp as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"uQaMxfUP8yGIK2DuRiaj99Ijw5EDWqNmA+lxowA6ULD9eVDFoH4FdwTSiCH44jLad1i2G+hL7OriWZyOfOafyA==", "ep"=>"5"}
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mMark Load (0.3ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 5]]
+  [1m[36mMark Load (0.2ms)[0m  [1m[34mSELECT  "marks".* FROM "marks" WHERE "marks"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "marks" WHERE "marks"."id" = $1[0m  [["id", 13]]
+  [1m[35m (49.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[31mDELETE FROM "exams" WHERE "exams"."id" = $1[0m  [["id", 5]]
+  [1m[35m (5.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/pages/examprof
+Completed 302 Found in 62ms (ActiveRecord: 56.8ms)
+
+
+Started GET "/pages/examprof" for 127.0.0.1 at 2017-05-23 14:53:46 +0200
+Processing by PagesController#examprof as HTML
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/examprof.html.erb within layouts/application
+  [1m[36mExam Load (0.6ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 1]]
+  Rendered pages/examprof.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 30ms (Views: 25.9ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/pages/ajoutexam" for 127.0.0.1 at 2017-05-23 14:53:51 +0200
+Processing by PagesController#ajoutexam as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/ajoutexam.html.erb within layouts/application
+  Rendered pages/ajoutexam.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 19ms (Views: 16.9ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/pages/ajoutexam" for 127.0.0.1 at 2017-05-23 14:54:03 +0200
+Processing by PagesController#ajouterexam as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"aYQcbDU/xSSV8ROmPP98Hwr+qvwq07yf+rNRje/SUsBy05O6jAijBgCIj9FuDOy3mo/8OSQN//MzQEyznsvFQQ==", "epreuve"=>"hl", "date"=>"31/03/1996", "matiere"=>"1"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (79.4ms)[0m  [1m[32mINSERT INTO "exams" ("title", "date", "subject_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "hl"], ["date", 1996-03-31 00:00:00 UTC], ["subject_id", 1], ["created_at", 2017-05-23 12:54:03 UTC], ["updated_at", 2017-05-23 12:54:03 UTC]]
+  [1m[35m (66.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/pages/examprof
+Completed 302 Found in 150ms (ActiveRecord: 145.7ms)
+
+
+Started GET "/pages/examprof" for 127.0.0.1 at 2017-05-23 14:54:03 +0200
+Processing by PagesController#examprof as HTML
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/examprof.html.erb within layouts/application
+  [1m[36mExam Load (0.5ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 1]]
+  Rendered pages/examprof.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 21ms (Views: 17.9ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/pages/examprof" for 127.0.0.1 at 2017-05-23 14:54:06 +0200
+Processing by PagesController#voirnote as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"42HQxTz/56WWSL14WaHVjAlQLEXLCHz5cCszrx6jr1UBpzeKtdAIZhO0GhKPXthQwfBGaguH1uWea7G5lhRFPA==", "id_epreuve"=>"6"}
+  [1m[36mExam Load (0.4ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 ORDER BY "exams"."id" ASC LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/note
+Completed 302 Found in 3ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/note" for 127.0.0.1 at 2017-05-23 14:54:06 +0200
+Processing by PagesController#note as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mExam Load (0.2ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  Rendering pages/note.html.erb within layouts/application
+  [1m[36mMark Load (0.3ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 6]]
+  Rendered pages/note.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 20ms (Views: 16.8ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/pages/note" for 127.0.0.1 at 2017-05-23 14:54:12 +0200
+Processing by PagesController#ajoutnote as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"V6i5dBa8aSA1WNS9OP1tLPbLK5VfV+kpRRKuWDCMoTK1bl47n5OG47Ckc9fuAmDwPmtBup/YQzWrUixOuDtLWw==", "nom"=>"y", "prenom"=>"y", "note"=>"12", "prof"=>"1", "exam"=>"6"}
+  [1m[36mStudient Load (0.4ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."surname" = $1 AND "studients"."name" = $2 ORDER BY "studients"."id" ASC LIMIT $3[0m  [["surname", "y"], ["name", "y"], ["LIMIT", 1]]
+  [1m[36mMark Load (0.3ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 6]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "marks" ("mark", "exam_id", "studient_id", "teacher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["mark", 12.0], ["exam_id", 6], ["studient_id", 4], ["teacher_id", 1], ["created_at", 2017-05-23 12:54:12 UTC], ["updated_at", 2017-05-23 12:54:12 UTC]]
+  [1m[35m (92.9ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/pages/note
+Completed 302 Found in 99ms (ActiveRecord: 94.1ms)
+
+
+Started GET "/pages/note" for 127.0.0.1 at 2017-05-23 14:54:12 +0200
+Processing by PagesController#note as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mExam Load (0.2ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  Rendering pages/note.html.erb within layouts/application
+  [1m[36mMark Load (0.4ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 6]]
+  [1m[36mStudient Load (0.6ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendered pages/note.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 25ms (Views: 20.9ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/pages/examprof" for 127.0.0.1 at 2017-05-23 14:54:13 +0200
+Processing by PagesController#examprof as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/examprof.html.erb within layouts/application
+  [1m[36mExam Load (0.4ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 1]]
+  Rendered pages/examprof.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 30ms (Views: 26.5ms | ActiveRecord: 1.0ms)
+
+
+Started DELETE "/pages/examprof" for 127.0.0.1 at 2017-05-23 14:54:15 +0200
+Processing by PagesController#suppepp as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"qH6uVRTuzaF/xuZ+4HkAlisQNIHEoc62XHhxDgUK+onsAXJVQZ879/M/DrFevZG7jmtBCy+wgTq9yJwjedY18Q==", "ep"=>"6"}
+  [1m[36mExam Load (0.2ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mMark Load (0.3ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 6]]
+  [1m[36mMark Load (0.3ms)[0m  [1m[34mSELECT  "marks".* FROM "marks" WHERE "marks"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "marks" WHERE "marks"."id" = $1[0m  [["id", 14]]
+  [1m[35m (41.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "exams" WHERE "exams"."id" = $1[0m  [["id", 6]]
+  [1m[35m (6.0ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/pages/examprof
+Completed 302 Found in 55ms (ActiveRecord: 49.7ms)
+
+
+Started GET "/pages/examprof" for 127.0.0.1 at 2017-05-23 14:54:15 +0200
+Processing by PagesController#examprof as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.1ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/examprof.html.erb within layouts/application
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 1]]
+  Rendered pages/examprof.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 26ms (Views: 23.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pages/examprof" for 127.0.0.1 at 2017-05-23 14:55:22 +0200
+Processing by PagesController#examprof as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/examprof.html.erb within layouts/application
+  [1m[36mExam Load (0.6ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 1]]
+  Rendered pages/examprof.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 21ms (Views: 17.0ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-23 14:55:43 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 30ms (Views: 27.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-23 14:56:08 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 26ms (Views: 21.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-23 15:01:40 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (11.2ms)
+Completed 200 OK in 50ms (Views: 28.2ms | ActiveRecord: 7.8ms)
+
+
+Started POST "/pages/prof" for 127.0.0.1 at 2017-05-23 15:01:45 +0200
+Processing by PagesController#examen as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"O4q78qxxqGQYObdIPzfBQcCqTizbDvCNhY9cTbylndbZTFy9JV5Hp53FECLpyMydCAokAxuBWpFrz95bNBJ3vw==", "id_mat"=>"2"}
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 ORDER BY "subjects"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/examprof
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/pages/examprof" for 127.0.0.1 at 2017-05-23 15:01:45 +0200
+Processing by PagesController#examprof as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering pages/examprof.html.erb within layouts/application
+  [1m[36mExam Load (0.4ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 2]]
+  Rendered pages/examprof.html.erb within layouts/application (5.4ms)
+Completed 200 OK in 27ms (Views: 22.3ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/pages/examprof" for 127.0.0.1 at 2017-05-23 15:01:46 +0200
+Processing by PagesController#voirnote as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"jZ/4QUYe0MZ+deqfzsYNTa9kUjISX9NVYXu+mOqy04hvWR8OzzE/BfuJTfUYOQCRZ8Q4HdLQeUmPOzyOYgU54Q==", "id_epreuve"=>"4"}
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 ORDER BY "exams"."id" ASC LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/note
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/pages/note" for 127.0.0.1 at 2017-05-23 15:01:46 +0200
+Processing by PagesController#note as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.1ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mExam Load (0.2ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering pages/note.html.erb within layouts/application
+  [1m[36mMark Load (0.4ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 4]]
+  [1m[36mStudient Load (0.4ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered pages/note.html.erb within layouts/application (18.7ms)
+Completed 200 OK in 42ms (Views: 32.0ms | ActiveRecord: 5.8ms)
+
+
+Started GET "/pages/examprof" for 127.0.0.1 at 2017-05-23 15:01:48 +0200
+Processing by PagesController#examprof as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering pages/examprof.html.erb within layouts/application
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 2]]
+  Rendered pages/examprof.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 24ms (Views: 21.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-23 15:01:50 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (1.0ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 26ms (Views: 21.1ms | ActiveRecord: 1.4ms)
+
+
+Started DELETE "/pages/prof" for 127.0.0.1 at 2017-05-23 15:01:54 +0200
+  
+AbstractController::ActionNotFound (The action 'suppmat' could not be found for PagesController):
+  
+actionpack (5.0.2) lib/abstract_controller/base.rb:121:in `process'
+actionview (5.0.2) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.0.2) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (5.0.2) lib/action_controller/metal.rb:262:in `dispatch'
+actionpack (5.0.2) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (5.0.2) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (5.0.2) lib/action_dispatch/journey/router.rb:39:in `block in serve'
+actionpack (5.0.2) lib/action_dispatch/journey/router.rb:26:in `each'
+actionpack (5.0.2) lib/action_dispatch/journey/router.rb:26:in `serve'
+actionpack (5.0.2) lib/action_dispatch/routing/route_set.rb:725:in `call'
+rack (2.0.1) lib/rack/etag.rb:25:in `call'
+rack (2.0.1) lib/rack/conditional_get.rb:38:in `call'
+rack (2.0.1) lib/rack/head.rb:12:in `call'
+rack (2.0.1) lib/rack/session/abstract/id.rb:222:in `context'
+rack (2.0.1) lib/rack/session/abstract/id.rb:216:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.0.2) lib/active_record/migration.rb:553:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+activesupport (5.0.2) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+activesupport (5.0.2) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+activesupport (5.0.2) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.2) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+web-console (3.5.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.2) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.2) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.2) lib/rails/engine.rb:522:in `call'
+puma (3.8.2) lib/puma/configuration.rb:224:in `call'
+puma (3.8.2) lib/puma/server.rb:600:in `handle_request'
+puma (3.8.2) lib/puma/server.rb:435:in `process_client'
+puma (3.8.2) lib/puma/server.rb:299:in `block in run'
+puma (3.8.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  Rendering /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/unknown_action.html.erb within rescues/layout
+  Rendered /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/unknown_action.html.erb within rescues/layout (0.4ms)
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-23 15:02:16 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (6.5ms)
+Completed 200 OK in 33ms (Views: 21.7ms | ActiveRecord: 0.6ms)
+
+
+Started DELETE "/pages/prof" for 127.0.0.1 at 2017-05-23 15:02:18 +0200
+Processing by PagesController#suppmat as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"exRSZTulwYEVevCb7IqpmNIgNNzNd85WwOxVqs7j7aqZ0rUqsoouQpCGV/E6daREGoBe8w34ZEourNe8RlQHww==", "mat"=>"2"}
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mExam Load (0.4ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 2]]
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 1.6ms)
+
+
+  
+NoMethodError (undefined method `id' for #<Exam::ActiveRecord_Relation:0x007f4a11236010>
+Did you mean?  ids):
+  
+app/controllers/pages_controller.rb:126:in `suppmat'
+  Rendering /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (2.3ms)
+  Rendering /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendering /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /home/hanna_benj/.rbenv/versions/2.3.3/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (21.5ms)
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-23 15:04:13 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 29ms (Views: 19.7ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/pages/prof" for 127.0.0.1 at 2017-05-23 15:04:14 +0200
+Processing by PagesController#examen as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"gBZh1PLhk/z50KAo6fo67m/U7HGlK7NNV6kPU4cwy9xi0Iabe858P3wsB0I/BTcyp3SGXmWkGVG56Y1FD4chtQ==", "id_mat"=>"2"}
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 ORDER BY "subjects"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/examprof
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/pages/examprof" for 127.0.0.1 at 2017-05-23 15:04:14 +0200
+Processing by PagesController#examprof as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering pages/examprof.html.erb within layouts/application
+  [1m[36mExam Load (0.4ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 2]]
+  Rendered pages/examprof.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 24ms (Views: 19.4ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/pages/examprof" for 127.0.0.1 at 2017-05-23 15:04:15 +0200
+Processing by PagesController#voirnote as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ZloV6BcIBTPUNGceRHJsCHF3xDVahWgt7EDTkLUN/HKEnPKnnifq8FHIwHSSjWHUudeuGpoKwjECAFGGPboWGw==", "id_epreuve"=>"4"}
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 ORDER BY "exams"."id" ASC LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/note
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/pages/note" for 127.0.0.1 at 2017-05-23 15:04:15 +0200
+Processing by PagesController#note as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mExam Load (0.2ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering pages/note.html.erb within layouts/application
+  [1m[36mMark Load (0.4ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 4]]
+  [1m[36mStudient Load (0.5ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered pages/note.html.erb within layouts/application (12.9ms)
+Completed 200 OK in 31ms (Views: 24.9ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/pages/examprof" for 127.0.0.1 at 2017-05-23 15:04:17 +0200
+Processing by PagesController#examprof as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering pages/examprof.html.erb within layouts/application
+  [1m[36mExam Load (0.4ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 2]]
+  Rendered pages/examprof.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 30ms (Views: 26.7ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-23 15:04:18 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 30ms (Views: 18.6ms | ActiveRecord: 0.5ms)
+
+
+Started DELETE "/pages/prof" for 127.0.0.1 at 2017-05-23 15:04:19 +0200
+Processing by PagesController#suppmat as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Wr6kHfnIRh6DnKURFeNmLl6UQUedzPU/Stf9qLsRfQc77UL4q1l7YnGLr4ll79ICru9TGoQFYpDTUkQHescbZA==", "mat"=>"2"}
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mExam Load (0.4ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 2]]
+  [1m[36mMark Load (0.3ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 4]]
+  [1m[36mMark Load (0.3ms)[0m  [1m[34mSELECT  "marks".* FROM "marks" WHERE "marks"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "marks" WHERE "marks"."id" = $1[0m  [["id", 4]]
+  [1m[35m (44.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mMark Load (0.8ms)[0m  [1m[34mSELECT  "marks".* FROM "marks" WHERE "marks"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[31mDELETE FROM "marks" WHERE "marks"."id" = $1[0m  [["id", 5]]
+  [1m[35m (35.1ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/pages/prof
+Completed 302 Found in 93ms (ActiveRecord: 83.0ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-23 15:04:19 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.7ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.8ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (5.4ms)
+Completed 200 OK in 34ms (Views: 26.9ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/pages/prof" for 127.0.0.1 at 2017-05-23 15:04:20 +0200
+Processing by PagesController#examen as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"vGP2zipUynn4wYkIr4Z3cGlW/1iDCdebZOuzvnMOGaBepRGBo3slun09LmJ5eXqsofaVd0OGfYeKqzGo+7nzyQ==", "id_mat"=>"2"}
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 ORDER BY "subjects"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/examprof
+Completed 302 Found in 2ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/examprof" for 127.0.0.1 at 2017-05-23 15:04:20 +0200
+Processing by PagesController#examprof as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering pages/examprof.html.erb within layouts/application
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 2]]
+  Rendered pages/examprof.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 23ms (Views: 20.6ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/pages/examprof" for 127.0.0.1 at 2017-05-23 15:04:22 +0200
+Processing by PagesController#voirnote as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bDeia1PaobUIdHk2qAMyH5an+1iNYQKmh4KwD6FS/CCO8UUk2vVOdo2I3lx+/D/DXgeRd03uqLppwjIZKeUWSQ==", "id_epreuve"=>"4"}
+  [1m[36mExam Load (0.4ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 ORDER BY "exams"."id" ASC LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/note
+Completed 302 Found in 2ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/note" for 127.0.0.1 at 2017-05-23 15:04:22 +0200
+Processing by PagesController#note as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mExam Load (0.2ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering pages/note.html.erb within layouts/application
+  [1m[36mMark Load (0.3ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 4]]
+  Rendered pages/note.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 20ms (Views: 17.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/pages/examprof" for 127.0.0.1 at 2017-05-23 15:04:23 +0200
+Processing by PagesController#examprof as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering pages/examprof.html.erb within layouts/application
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 2]]
+  Rendered pages/examprof.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 24ms (Views: 21.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-23 15:04:27 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.4ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.6ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 24ms (Views: 20.8ms | ActiveRecord: 0.9ms)
+
+
+Started DELETE "/pages/prof" for 127.0.0.1 at 2017-05-23 15:04:36 +0200
+Processing by PagesController#suppmat as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"wXkr1SpqRvrWMxdC63pk0WxBF4SgI+tw/DY8/mYqwDugKs0wePt7hiQkHdqbdtD9nDoF2bnqfN9ls4VRp/ymWA==", "mat"=>"2"}
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mExam Load (0.5ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 2]]
+  [1m[36mMark Load (0.4ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 4]]
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "exams" WHERE "exams"."id" = $1[0m  [["id", 4]]
+  [1m[35m (48.9ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/pages/prof
+Completed 302 Found in 71ms (ActiveRecord: 50.9ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-23 15:04:36 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.7ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 61ms (Views: 28.0ms | ActiveRecord: 10.0ms)
+
+
+Started POST "/pages/prof" for 127.0.0.1 at 2017-05-23 15:04:37 +0200
+Processing by PagesController#examen as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"NJI8Ss+CMSadnMCHSOEX4z54MrRyMBMcj4IOxlDLFjfWVNsFRq3e5RhgZ+2eHho/9thYm7K/uQBhwozQ2Hz8Xg==", "id_mat"=>"2"}
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 ORDER BY "subjects"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/examprof
+Completed 302 Found in 2ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/examprof" for 127.0.0.1 at 2017-05-23 15:04:37 +0200
+Processing by PagesController#examprof as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering pages/examprof.html.erb within layouts/application
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 2]]
+  Rendered pages/examprof.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 22ms (Views: 19.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-23 15:04:39 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 23ms (Views: 21.2ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/pages/prof" for 127.0.0.1 at 2017-05-23 15:05:06 +0200
+Processing by PagesController#examen as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4JLg/FaxnR3X1Xq00ilfRxswgeA2w+RiUv5JWqrfOYKjJwo5HJsCmls5ZZuZ/xD8v5uSwDWyre59dWcqFEkYTg==", "id_mat"=>"2"}
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 ORDER BY "subjects"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/examprof
+Completed 302 Found in 11ms (ActiveRecord: 2.9ms)
+
+
+Started GET "/pages/examprof" for 127.0.0.1 at 2017-05-23 15:05:06 +0200
+Processing by PagesController#examprof as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering pages/examprof.html.erb within layouts/application
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 2]]
+  Rendered pages/examprof.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 28ms (Views: 17.2ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/pages/ajoutexam" for 127.0.0.1 at 2017-05-23 15:05:08 +0200
+Processing by PagesController#ajoutexam as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering pages/ajoutexam.html.erb within layouts/application
+  Rendered pages/ajoutexam.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 20ms (Views: 18.0ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/pages/ajoutexam" for 127.0.0.1 at 2017-05-23 15:05:14 +0200
+Processing by PagesController#ajouterexam as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"BeH1GcL0TDhFQP1d7PM+7UlW8isHRflMAf/YXTmxSDoetnrPe8MqGtA5YSq+AK5F2Sek7gmbuiDIDMVjSKjfuw==", "epreuve"=>"fsdfvsdf", "date"=>"02/02/02", "matiere"=>"2"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "exams" ("title", "date", "subject_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "fsdfvsdf"], ["date", 0002-02-02 00:00:00 UTC], ["subject_id", 2], ["created_at", 2017-05-23 13:05:14 UTC], ["updated_at", 2017-05-23 13:05:14 UTC]]
+  [1m[35m (131.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/pages/examprof
+Completed 302 Found in 143ms (ActiveRecord: 135.8ms)
+
+
+Started GET "/pages/examprof" for 127.0.0.1 at 2017-05-23 15:05:14 +0200
+Processing by PagesController#examprof as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.1ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering pages/examprof.html.erb within layouts/application
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 2]]
+  Rendered pages/examprof.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 25ms (Views: 22.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-23 15:05:16 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.6ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 25ms (Views: 22.5ms | ActiveRecord: 0.9ms)
+
+
+Started DELETE "/pages/prof" for 127.0.0.1 at 2017-05-23 15:05:17 +0200
+Processing by PagesController#suppmat as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"QkO1WnDyAK04c5E2Xqh6u7lzC3ZfAqvzujiRCONh2zEjEFO/ImM90cpkm64upM6XSQgZK0bLPFwjvSinIre9Ug==", "mat"=>"2"}
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mExam Load (0.4ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 2]]
+  [1m[36mMark Load (0.2ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 7]]
+  [1m[36mExam Load (0.2ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "exams" WHERE "exams"."id" = $1[0m  [["id", 7]]
+  [1m[35m (79.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM "subjects" WHERE "subjects"."id" = $1[0m  [["id", 2]]
+  [1m[35m (5.3ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/pages/prof
+Completed 302 Found in 97ms (ActiveRecord: 88.5ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-23 15:05:18 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 24ms (Views: 21.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/pages/ajoutmatiere" for 127.0.0.1 at 2017-05-23 15:05:23 +0200
+Processing by PagesController#ajoutmatiere as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/ajoutmatiere.html.erb within layouts/application
+  Rendered pages/ajoutmatiere.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 22ms (Views: 20.1ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/pages/ajoutmatiere" for 127.0.0.1 at 2017-05-23 15:05:34 +0200
+Processing by PagesController#ajouter as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"/JmVGOiHlap4l0nMnmtU/++ZRNumWnTeC8TwqmsAsSR0PunZo1WNDVJvDZx1ZJhUsGZBYQzUb2SF0N/nwX+oqw==", "matiere"=>"kjdfsdkf", "debut"=>"01/01/01", "fin"=>"02/02/02", "id"=>"1"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (44.3ms)[0m  [1m[32mINSERT INTO "subjects" ("title", "begin", "end", "teacher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "kjdfsdkf"], ["begin", 0001-01-01 00:00:00 UTC], ["end", 0002-02-02 00:00:00 UTC], ["teacher_id", 1], ["created_at", 2017-05-23 13:05:34 UTC], ["updated_at", 2017-05-23 13:05:34 UTC]]
+  [1m[35m (57.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/pages/prof
+Completed 302 Found in 107ms (ActiveRecord: 101.9ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-23 15:05:34 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.6ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (4.3ms)
+Completed 200 OK in 28ms (Views: 23.0ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/pages/prof" for 127.0.0.1 at 2017-05-23 15:05:38 +0200
+Processing by PagesController#examen as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"a1sPbx27c7cV9Q7uYoM0ZZ8G+I+Gvkc80DMTy39tapGJnegglJScdJAJqYS0fDm5V6aSoEYx7SA+c5Hd99qA+A==", "id_mat"=>"4"}
+  [1m[36mSubject Load (0.4ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 ORDER BY "subjects"."id" ASC LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/examprof
+Completed 302 Found in 2ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/examprof" for 127.0.0.1 at 2017-05-23 15:05:38 +0200
+Processing by PagesController#examprof as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering pages/examprof.html.erb within layouts/application
+  [1m[36mExam Load (0.4ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 4]]
+  Rendered pages/examprof.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 20ms (Views: 16.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/pages/ajoutexam" for 127.0.0.1 at 2017-05-23 15:05:41 +0200
+Processing by PagesController#ajoutexam as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering pages/ajoutexam.html.erb within layouts/application
+  Rendered pages/ajoutexam.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 18ms (Views: 15.5ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/pages/ajoutexam" for 127.0.0.1 at 2017-05-23 15:05:47 +0200
+Processing by PagesController#ajouterexam as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"f31/j1EmKPC7Mi9IDt0PXMC6J3xfhMKIWjnCPBwFEgdkKvBZ6BFO0i5Lsz9cLp/0UMtxuVFageSTyt8CbRyFhg==", "epreuve"=>"sdgsd", "date"=>"03/03/03", "matiere"=>"4"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "exams" ("title", "date", "subject_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "sdgsd"], ["date", 0003-03-03 00:00:00 UTC], ["subject_id", 4], ["created_at", 2017-05-23 13:05:47 UTC], ["updated_at", 2017-05-23 13:05:47 UTC]]
+  [1m[35m (65.8ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/pages/examprof
+Completed 302 Found in 70ms (ActiveRecord: 66.4ms)
+
+
+Started GET "/pages/examprof" for 127.0.0.1 at 2017-05-23 15:05:47 +0200
+Processing by PagesController#examprof as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering pages/examprof.html.erb within layouts/application
+  [1m[36mExam Load (0.4ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 4]]
+  Rendered pages/examprof.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 25ms (Views: 20.5ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/pages/examprof" for 127.0.0.1 at 2017-05-23 15:05:49 +0200
+Processing by PagesController#voirnote as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hoC3TfbnIeCdigb9ra+q+It3Ip2ITTtjuFhndMYUfWNkRlACf8jOIxh2oZd7UKckQ9dIskjCkX9WGOViTqOXCg==", "id_epreuve"=>"8"}
+  [1m[36mExam Load (0.4ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 ORDER BY "exams"."id" ASC LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+Redirected to http://localhost:3000/pages/note
+Completed 302 Found in 2ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/note" for 127.0.0.1 at 2017-05-23 15:05:49 +0200
+Processing by PagesController#note as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mExam Load (0.2ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  Rendering pages/note.html.erb within layouts/application
+  [1m[36mMark Load (0.3ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 8]]
+  Rendered pages/note.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 19ms (Views: 16.4ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/pages/note" for 127.0.0.1 at 2017-05-23 15:05:55 +0200
+Processing by PagesController#ajoutnote as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bFNSrlT6YK9scJfJHrv07JLqm1VE4EOtN8PEOHc8URCOlbXh3dWPbOmMMKPIRPkwWkrxeoRv6bHZg0Yu/4u7eQ==", "nom"=>"y", "prenom"=>"y", "note"=>"222", "prof"=>"1", "exam"=>"8"}
+  [1m[36mStudient Load (0.8ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."surname" = $1 AND "studients"."name" = $2 ORDER BY "studients"."id" ASC LIMIT $3[0m  [["surname", "y"], ["name", "y"], ["LIMIT", 1]]
+  [1m[36mMark Load (0.5ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 8]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "marks" ("mark", "exam_id", "studient_id", "teacher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["mark", 222.0], ["exam_id", 8], ["studient_id", 4], ["teacher_id", 1], ["created_at", 2017-05-23 13:05:55 UTC], ["updated_at", 2017-05-23 13:05:55 UTC]]
+  [1m[35m (154.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/pages/note
+Completed 302 Found in 176ms (ActiveRecord: 161.3ms)
+
+
+Started GET "/pages/note" for 127.0.0.1 at 2017-05-23 15:05:55 +0200
+Processing by PagesController#note as HTML
+  [1m[36mTeacher Load (0.3ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mExam Load (0.2ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  Rendering pages/note.html.erb within layouts/application
+  [1m[36mMark Load (0.4ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 8]]
+  [1m[36mStudient Load (0.3ms)[0m  [1m[34mSELECT  "studients".* FROM "studients" WHERE "studients"."id" = $1 ORDER BY "studients"."id" ASC LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendered pages/note.html.erb within layouts/application (4.3ms)
+Completed 200 OK in 25ms (Views: 19.9ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/pages/examprof" for 127.0.0.1 at 2017-05-23 15:05:57 +0200
+Processing by PagesController#examprof as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering pages/examprof.html.erb within layouts/application
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 4]]
+  Rendered pages/examprof.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 19ms (Views: 16.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-23 15:05:59 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.5ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.5ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (13.2ms)
+Completed 200 OK in 37ms (Views: 31.6ms | ActiveRecord: 0.9ms)
+
+
+Started DELETE "/pages/prof" for 127.0.0.1 at 2017-05-23 15:06:02 +0200
+Processing by PagesController#suppmat as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ZtWaqJyIakzjyEkcU5GASz9QTk6k3IvFOmov9ZKrcBsHhnxNzhlXMBHfQ4QjnTRnzytcE70VHGqj75ZaU30WeA==", "mat"=>"4"}
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT "exams".* FROM "exams" WHERE "exams"."subject_id" = $1[0m  [["subject_id", 4]]
+  [1m[36mMark Load (0.3ms)[0m  [1m[34mSELECT "marks".* FROM "marks" WHERE "marks"."exam_id" = $1[0m  [["exam_id", 8]]
+  [1m[36mMark Load (0.3ms)[0m  [1m[34mSELECT  "marks".* FROM "marks" WHERE "marks"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "marks" WHERE "marks"."id" = $1[0m  [["id", 15]]
+  [1m[35m (46.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mExam Load (0.3ms)[0m  [1m[34mSELECT  "exams".* FROM "exams" WHERE "exams"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "exams" WHERE "exams"."id" = $1[0m  [["id", 8]]
+  [1m[35m (5.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mSubject Load (0.2ms)[0m  [1m[34mSELECT  "subjects".* FROM "subjects" WHERE "subjects"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "subjects" WHERE "subjects"."id" = $1[0m  [["id", 4]]
+  [1m[35m (5.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/pages/prof
+Completed 302 Found in 70ms (ActiveRecord: 60.4ms)
+
+
+Started GET "/pages/prof" for 127.0.0.1 at 2017-05-23 15:06:02 +0200
+Processing by PagesController#prof as HTML
+  [1m[36mTeacher Load (0.2ms)[0m  [1m[34mSELECT  "teachers".* FROM "teachers" WHERE "teachers"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering pages/prof.html.erb within layouts/application
+  [1m[36mSubject Load (0.3ms)[0m  [1m[34mSELECT "subjects".* FROM "subjects" WHERE "subjects"."teacher_id" = $1[0m  [["teacher_id", 1]]
+  Rendered pages/prof.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 20ms (Views: 17.6ms | ActiveRecord: 0.5ms)
+
+

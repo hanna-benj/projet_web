@@ -37,6 +37,7 @@
           <th>Épreuve</th>
           <th>Date de l'épreuve</th>
           <th>Notes</th>
+          <th>Supprimer</th>
         </tr>
       </thead>
     <%@epreuve.each do |ep| %>
@@ -48,6 +49,12 @@
           <%= form_tag "/pages/examprof", method: "post" do %>
           <input type="hidden" name="id_epreuve" value="<%= ep.id %>">
           <input type="submit" class="btn btn-primary hover" value="Notes">
+          <% end %>
+        </td>
+        <td>
+          <%= form_tag "/pages/examprof", method: :delete do %>
+            <input type="hidden" name="ep" value="<%= ep.id %>">
+            <input type="submit" class="btn btn-primary hover" value="Supprimer">
           <% end %>
         </td>
       </tr>

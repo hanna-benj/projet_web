@@ -36,6 +36,7 @@
               <th>Nom élève</th>
               <th>Prénom élève</th>
               <th>Note</th>
+              <th>Supprimer</th>
             </tr>
           </thead>
           <%@mark.each do |notes| %>
@@ -45,6 +46,12 @@
             <td> <%= @eleve.surname %></td>
             <td> <%= @eleve.name %> </td>
             <td> <%= notes.mark %> </td>
+            <td>
+              <%= form_tag "/pages/note", method: :delete do %>
+                <input type="hidden" name="note" value="<%= notes.id %>">
+                <input type="submit" class="btn btn-primary hover" value="Supprimer">
+              <% end %>
+            </td>
           </tr>
         </tbody>
           <% end %>

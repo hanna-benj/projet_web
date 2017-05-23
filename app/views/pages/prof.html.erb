@@ -39,6 +39,7 @@
       <th>Date de début</th>
       <th>Date de fin</th>
       <th>Examens</th>
+      <th>Supprimer</th>
     </tr>
   </thead>
     <%@matiere.each do |mat| %>
@@ -51,6 +52,12 @@
       <%= form_tag "/pages/prof", method: "post" do %>
         <input type="hidden" name="id_mat" value="<%= mat.id %>">
         <input type="submit" class="btn btn-primary hover" value="Examens">
+      <% end %>
+    </td>
+    <td>
+      <%= form_tag "/pages/prof", method: :delete do %>
+        <input type="hidden" name="mat" value="<%= mat.id %>">
+        <input type="submit" class="btn btn-primary hover" value="Supprimer">
       <% end %>
     </td>
   </tr>
