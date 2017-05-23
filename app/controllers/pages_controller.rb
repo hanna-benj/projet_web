@@ -229,10 +229,10 @@ class PagesController < ApplicationController
       end
       @nveleve = Studient.create(surname: params[:nom], name: params[:prenom], email: params[:email], password: password)
       UsermailerMailer.sample_email(@nveleve).deliver
-      redirect_to '/pages/prof'
+      redirect_to '/pages/inviteleve'
     end
     flash[:info] = "L'invitation a bien été envoyé"
-    redirect_to '/pages/inviteleve'
+
   end
 
 end
